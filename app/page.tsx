@@ -13,7 +13,7 @@ import Footer from '@/components/Footer'
 export default function Home() {
   const [currentRole, setCurrentRole] = useState('')
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const roles = ['Software Engineer', 'UI/UX Designer', 'Web Developer', 'Problem Solver', 'Game Developer', 'Mobile Developer', 'AI Engineer']
+  const roles = ['Software Engineer', 'UI/UX Designer', 'Web Developer', 'Problem Solver', 'Game Developer', 'Mobile Developer']
   const [roleIndex, setRoleIndex] = useState(0)
   const [typing, setTyping] = useState(true)
   const [charIndex, setCharIndex] = useState(0)
@@ -173,9 +173,9 @@ export default function Home() {
         </section>
 
         {/* Skills Section */}
-        <section id="about" className="container mx-auto px-4 py-20">
-          <h2 className="text-2xl font-bold mb-8 animate-fade-in-down">Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section id="about" className="container mx-auto px-2 sm:px-4 py-12 sm:py-20">
+          <h2 className="text-2xl font-bold mb-8 animate-fade-in-down text-center">Skills</h2>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
             {webSkills.map((group) => (
               <div key={group.category} className="mb-8">
                 <div className="flex items-center gap-3 mb-4">
@@ -188,7 +188,7 @@ export default function Home() {
                   </div>
                   <h3 className="text-xl font-semibold text-blue-700">{group.category}</h3>
                 </div>
-                <div className="flex flex-wrap gap-6">
+                <div className="flex flex-wrap gap-4 sm:gap-6 justify-center sm:justify-start">
                   {group.skills.map((skill) => {
                     // Assign color for each skill icon
                     let iconColor = '#60A5FA'; // default blue
@@ -206,9 +206,9 @@ export default function Home() {
                     else if (skill.name === 'Python') iconColor = '#3776AB';
                     else if (skill.name === 'Flutter') iconColor = '#02569B';
                     return (
-                      <div key={skill.name} className="flex flex-col items-center bg-white/80 border border-blue-100 rounded-xl px-5 py-4 shadow-md hover:shadow-lg transition w-40">
+                      <div key={skill.name} className="flex flex-col items-center bg-white/80 border border-blue-100 rounded-xl px-4 py-4 shadow-md hover:shadow-lg transition w-32 sm:w-40 mx-auto">
                         <skill.icon className="w-8 h-8 mb-2" color={iconColor} />
-                        <span className="font-medium text-base mb-1">{skill.name}</span>
+                        <span className="font-medium text-base mb-1 text-center">{skill.name}</span>
                         {/* Progress bar for skill level */}
                         <div className="w-full h-2 bg-blue-100 rounded-full overflow-hidden mb-1">
                           <div

@@ -153,14 +153,13 @@ export default function Home() {
         {/* Hero Section */}
         <section id="home" className="container mx-auto px-4 py-20 pt-32 relative">
           <div className="max-w-2xl mx-auto text-center relative">
-            <div className="w-32 h-32 lg:w-64 lg:h-64 mx-auto mb-6 relative">
-              <div className="absolute -mt-2 -ml-2 lg:-mt-8 lg:-ml-8 inset-0 w-50 h-50 lg:w-80 lg:h-80 bg-blue-200 rounded-full opacity-30 blur-xl animate-pulse"></div>
+            <div className="w-32 h-32 lg:w-64 lg:h-64 mx-auto mb-6 relative flex items-center justify-center bg-white border-4 border-blue-100 shadow-lg rounded-full overflow-hidden">
               <Image
                 src="/pic.jpg"
                 alt="Avatar"
                 width={512}
                 height={512}
-                className="relative z-10 rounded-full border-4 border-white shadow-lg"
+                className="object-cover w-full h-full"
               />
             </div>
             <h1 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-down">

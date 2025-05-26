@@ -21,10 +21,10 @@ const Footer: React.FC = () => {
           <section className="flex-1 flex flex-col items-center md:items-end">
             <h2 className="text-lg md:text-xl font-semibold mb-4 tracking-wide">Follow Me</h2>
             <div className="flex gap-6 justify-center md:justify-end">
-              <Link href="https://github.com/afnanahmadtariq" passHref>
+              <Link href="https://github.com/afnanahmadtariq" passHref target="_blank" rel="noopener noreferrer">
                 <img src="/icons/github.png" alt="GitHub" className="w-9 h-9 hover:scale-125 transition-transform duration-300 hover:drop-shadow-lg" />
               </Link>
-              <Link href="https://linkedin.com/in/afnanahmadtariq" passHref>
+              <Link href="https://linkedin.com/in/afnanahmadtariq" passHref target="_blank" rel="noopener noreferrer">
                 <img src="/icons/linkedin-icon.svg" alt="LinkedIn" className="w-9 h-9 hover:scale-125 transition-transform duration-300 hover:drop-shadow-lg" />
               </Link>
             </div>

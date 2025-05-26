@@ -178,23 +178,59 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {webSkills.map((group) => (
               <div key={group.category} className="mb-8">
-                <h3 className="text-xl font-semibold mb-4 text-blue-700 flex items-center gap-2">
-                  {group.category}
-                </h3>
-                <div className="flex flex-wrap gap-4">
-                  {group.skills.map((skill) => (
-                    <div key={skill.name} className="flex items-center gap-2 bg-white/70 border border-gray-200 rounded-lg px-4 py-2 shadow-sm hover:shadow-md transition">
-                      <skill.icon className="text-blue-600 w-6 h-6" />
-                      <span className="font-medium">{skill.name}</span>
-                      <span className={
-                        skill.level === 'Beginner' ? 'text-red-500 font-bold ml-2' :
-                        skill.level === 'Intermediate' ? 'text-yellow-500 font-bold ml-2' :
-                        'text-green-600 font-bold ml-2'
-                      }>
-                        {skill.level}
-                      </span>
-                    </div>
-                  ))}
+                <div className="flex items-center gap-3 mb-4">
+                  {/* Category Icon with color */}
+                  <div className="w-10 h-10 flex items-center justify-center rounded-full bg-blue-100 shadow-md">
+                    {group.category === 'Frontend' && <SiReact className="w-6 h-6" color="#61DAFB" />}
+                    {group.category === 'Backend' && <SiExpress className="w-6 h-6" color="#000000" />}
+                    {group.category === 'UI/UX & Tools' && <SiFigma className="w-6 h-6" color="#A259FF" />}
+                    {group.category === 'Other' && <SiPython className="w-6 h-6" color="#3776AB" />}
+                  </div>
+                  <h3 className="text-xl font-semibold text-blue-700">{group.category}</h3>
+                </div>
+                <div className="flex flex-wrap gap-6">
+                  {group.skills.map((skill) => {
+                    // Assign color for each skill icon
+                    let iconColor = '#60A5FA'; // default blue
+                    if (skill.name === 'React.js') iconColor = '#61DAFB';
+                    else if (skill.name === 'Next.js') iconColor = '#000000';
+                    else if (skill.name === 'TypeScript') iconColor = '#3178C6';
+                    else if (skill.name === 'HTML5') iconColor = '#E34F26';
+                    else if (skill.name === 'Tailwind CSS') iconColor = '#38BDF8';
+                    else if (skill.name === 'Node.js') iconColor = '#339933';
+                    else if (skill.name === 'Express.js') iconColor = '#000000';
+                    else if (skill.name === 'MongoDB') iconColor = '#47A248';
+                    else if (skill.name === 'Figma') iconColor = '#A259FF';
+                    else if (skill.name === 'Adobe Photoshop') iconColor = '#31A8FF';
+                    else if (skill.name === 'Git') iconColor = '#F05032';
+                    else if (skill.name === 'Python') iconColor = '#3776AB';
+                    else if (skill.name === 'Flutter') iconColor = '#02569B';
+                    return (
+                      <div key={skill.name} className="flex flex-col items-center bg-white/80 border border-blue-100 rounded-xl px-5 py-4 shadow-md hover:shadow-lg transition w-40">
+                        <skill.icon className="w-8 h-8 mb-2" color={iconColor} />
+                        <span className="font-medium text-base mb-1">{skill.name}</span>
+                        {/* Progress bar for skill level */}
+                        <div className="w-full h-2 bg-blue-100 rounded-full overflow-hidden mb-1">
+                          <div
+                            className={
+                              skill.level === 'Advanced'
+                                ? 'bg-blue-600 h-2 rounded-full w-full animate-fade-in-right'
+                                : skill.level === 'Intermediate'
+                                ? 'bg-blue-400 h-2 rounded-full w-2/3 animate-fade-in-right'
+                                : 'bg-blue-200 h-2 rounded-full w-1/3 animate-fade-in-right'
+                            }
+                          ></div>
+                        </div>
+                        <span className={
+                          skill.level === 'Beginner' ? 'text-red-500 font-bold text-xs' :
+                          skill.level === 'Intermediate' ? 'text-yellow-500 font-bold text-xs' :
+                          'text-green-600 font-bold text-xs'
+                        }>
+                          {skill.level}
+                        </span>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             ))}

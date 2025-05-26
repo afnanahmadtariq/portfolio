@@ -147,33 +147,33 @@ export default function Home() {
   
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0D0B1F] to-[#1A1830] text-white">
+    <div className="min-h-screen bg-gradient-to-br from-white to-blue-100 text-gray-900">
       <Navbar />
       <div className='main'>
         {/* Hero Section */}
         <section id="home" className="container mx-auto px-4 py-20 pt-32 relative">
           <div className="max-w-2xl mx-auto text-center relative">
             <div className="w-32 h-32 lg:w-64 lg:h-64 mx-auto mb-6 relative">
-              <div className="absolute -mt-2 -ml-2 lg:-mt-8 lg:-ml-8 inset-0 w-50 h-50 lg:w-80 lg:h-80 bg-blue-500 rounded-full opacity-30 blur-xl animate-pulse"></div>
+              <div className="absolute -mt-2 -ml-2 lg:-mt-8 lg:-ml-8 inset-0 w-50 h-50 lg:w-80 lg:h-80 bg-blue-200 rounded-full opacity-30 blur-xl animate-pulse"></div>
               <Image
                 src="/pic.jpg"
                 alt="Avatar"
                 width={512}
                 height={512}
-                className="relative z-10 rounded-full"
+                className="relative z-10 rounded-full border-4 border-white shadow-lg"
               />
             </div>
             <h1 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-down">
-              Hello! I Am <span className="text-blue-400">Afnan Ahmad Tariq</span>
+              Hello! I Am <span className="text-blue-600">Afnan Ahmad Tariq</span>
             </h1>
             <h2 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-up">
-              I&apos;m a <span className="text-blue-400">{currentRole}</span>
-              <span className="animate-blink text-blue-400">|</span> 
+              I&apos;m a <span className="text-blue-600">{currentRole}</span>
+              <span className="animate-blink text-blue-600">|</span> 
             </h2>
-            <p className="text-sm lg:text-base text-gray-400 animate-fade-in-up">
-              Currently, I&apos;m a Software Engineering Student at <span className="text-blue-400">COMSATS University Islamabad</span>
+            <p className="text-sm lg:text-base text-gray-500 animate-fade-in-up">
+              Currently, I&apos;m a Software Engineering Student at <span className="text-blue-600">COMSATS University Islamabad</span>
             </p>
-            <p className="text-sm lg:text-base text-gray-400 mt-4 max-w-xl mx-auto animate-fade-in-up">
+            <p className="text-sm lg:text-base text-gray-500 mt-4 max-w-xl mx-auto animate-fade-in-up">
             I’m a passionate Software Engineer with a focus on creating scalable, secure, and intelligent 
             applications. With hands-on experience in MERN, and Flutter. I build software that not only 
             meets user needs but also integrates cutting-edge AI solutions to drive automation and innovation.
@@ -188,16 +188,16 @@ export default function Home() {
             {skills.map((skill, index) => (
               <Card 
                 key={index} 
-                className="bg-[#1A1830] border-none rounded-xl transition-transform duration-300 group md:hover:scale-105"
+                className="bg-white border border-gray-200 rounded-xl transition-transform duration-300 group md:hover:scale-105"
               >
                 <CardContent className="p-6">
                   <h3 className="text-lg font-semibold mb-2">{skill.name}</h3>
-                  <p className="text-gray-400">{skill.description}</p>
+                  <p className="text-gray-500">{skill.description}</p>
                   <p 
                     className={
                       skill.level === 'Beginner' ? 'text-red-500 font-bold' : 
                       skill.level === 'Intermediate' ? 'text-yellow-500 font-bold' : 
-                      'text-green-500 font-bold'
+                      'text-green-600 font-bold'
                     }
                   >
                     {skill.level}
@@ -212,11 +212,11 @@ export default function Home() {
         {/* Tech Stack */}
         <section className="container mx-auto px-4 py-20 text-center">
           <p className="text-xl mb-8 animate-fade-in-down">
-            I&apos;m currently looking to join a <span className="text-blue-400">cross-functional</span> team
+            I&apos;m currently looking to join a <span className="text-blue-600">cross-functional</span> team
           </p>
-          <p className="text-gray-400 mb-12 animate-fade-in-up">that values improving people&apos;s lives through accessible design</p>
+          <p className="text-gray-500 mb-12 animate-fade-in-up">that values improving people&apos;s lives through accessible design</p>
           <div className="relative w-64 h-64 lg:h-96 lg:w-96 mx-auto">
-            <div className="absolute inset-0 bg-blue-500 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+            <div className="absolute inset-0 bg-blue-200 rounded-full opacity-20 blur-3xl animate-pulse"></div>
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-6xl animate-float">
               <Image
@@ -233,14 +233,14 @@ export default function Home() {
                 SiMongodb, SiFlutter, SiExpress].map((Icon, i) => (
                 <div
                   key={i}
-                  className="absolute w-8 h-8 lg:w-10 lg:h-10 bg-[#1A1830] rounded-full flex items-center justify-center"
+                  className="absolute w-8 h-8 lg:w-10 lg:h-10 bg-white border border-gray-200 rounded-full flex items-center justify-center"
                   style={{
                     left: `${50 + 40 * Math.cos(2 * Math.PI * i / 12)}%`,
                     top: `${50 + 40 * Math.sin(2 * Math.PI * i / 12)}%`,
                     transform: 'translate(-50%, -50%)'
                   }}
                 >
-                  <Icon className="text-blue-400 w-4 h-4 lg:w-6 lg:h-6 animate-spin-reverse-slow" />
+                  <Icon className="text-blue-600 w-4 h-4 lg:w-6 lg:h-6 animate-spin-reverse-slow" />
                 </div>
               ))}
             </div>
@@ -254,11 +254,11 @@ export default function Home() {
             {projects.map((project, index) => (
               <div key={index} className="grid md:grid-cols-2 gap-8 items-center">
                   <div className={`order-2 ${index % 2 === 0 ? 'md:order-none' : ''}`}>
-                    <h3 className="text-sm text-blue-400 mb-2 animate-fade-in-left">{project.tech}</h3>
+                    <h3 className="text-sm text-blue-600 mb-2 animate-fade-in-left">{project.tech}</h3>
                     <h4 className="text-xl font-bold mb-4 animate-fade-in-left">{project.title}</h4>
-                    <p className="text-gray-400 mb-4 animate-fade-in-left">{project.description}</p>
+                    <p className="text-gray-500 mb-4 animate-fade-in-left">{project.description}</p>
                   </div>
-                  <div className="bg-[#1A1830] rounded-3xl p-4 transition-transform cursor-pointer duration-300 group md:hover:scale-105 ">
+                  <div className="bg-white border border-gray-200 rounded-3xl p-4 transition-transform cursor-pointer duration-300 group md:hover:scale-105 ">
                     <a href={project.url} target="_blank" rel="noopener noreferrer">
                       <Image
                         src={project.image} 

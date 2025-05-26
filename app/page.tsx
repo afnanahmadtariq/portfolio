@@ -170,22 +170,22 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
             </p>
           </div>
         </section>        {/* Skills Section */}
-        <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-12 sm:py-16 lg:py-24">
+        <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-12 sm:py-16 lg:py-24">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-8 sm:mb-12 lg:mb-16 animate-fade-in-down text-center">Skills</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 xl:gap-16">            {webSkills.map((group) => (
-              <div key={group.category} className="mb-6 sm:mb-8 lg:mb-12">
-                <div className="flex items-center gap-4 mb-6 sm:mb-8 lg:mb-10 justify-center sm:justify-start">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-8 xl:gap-6 2xl:gap-8">            {webSkills.map((group) => (
+              <div key={group.category} className="mb-4 sm:mb-6 lg:mb-8">
+                <div className="flex items-center gap-3 mb-4 sm:mb-6 lg:mb-6 justify-center sm:justify-start lg:justify-center xl:justify-start">
                   {/* Category Icon with color */}
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-blue-100 shadow-lg border border-blue-200/50">
-                    {group.category === 'Frontend' && <SiReact className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" color="#61DAFB" />}
-                    {group.category === 'Backend' && <SiExpress className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" color="#000000" />}
-                    {group.category === 'UI/UX & Tools' && <SiFigma className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" color="#A259FF" />}
-                    {group.category === 'Other' && <SiPython className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8" color="#3776AB" />}
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-12 xl:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-blue-100 shadow-lg border border-blue-200/50">
+                    {group.category === 'Frontend' && <SiReact className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" color="#61DAFB" />}
+                    {group.category === 'Backend' && <SiExpress className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" color="#000000" />}
+                    {group.category === 'UI/UX & Tools' && <SiFigma className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" color="#A259FF" />}
+                    {group.category === 'Other' && <SiPython className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" color="#3776AB" />}
                   </div>
-                  <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-blue-700">{group.category}</h3>
-                </div>                <div className="skills-grid grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 xl:gap-8">
+                  <h3 className="text-base sm:text-lg lg:text-xl xl:text-lg 2xl:text-xl font-bold text-blue-700">{group.category}</h3>
+                </div>                <div className="skills-grid grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 gap-2 sm:gap-3 lg:gap-4 xl:gap-3 2xl:gap-4">
                   {group.skills.map((skill, index) => {
-                    // Assign color for each skill icon
+                    // ...existing code...
                     let iconColor = '#60A5FA'; // default blue
                     if (skill.name === 'React.js') iconColor = '#61DAFB';
                     else if (skill.name === 'Next.js') iconColor = '#000000';
@@ -203,18 +203,18 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
                     return (
                       <div 
                         key={skill.name} 
-                        className={`skill-card flex flex-col items-center bg-white/90 backdrop-blur-sm border border-blue-100/50 rounded-2xl px-3 py-4 sm:px-4 sm:py-5 lg:px-6 lg:py-7 xl:px-8 xl:py-8 shadow-lg hover:shadow-xl hover:shadow-blue-200/60 min-h-[140px] sm:min-h-[160px] lg:min-h-[190px] xl:min-h-[200px] group relative overflow-hidden`}
+                        className={`skill-card flex flex-col items-center bg-white/90 backdrop-blur-sm border border-blue-100/50 rounded-xl px-2 py-3 sm:px-3 sm:py-4 lg:px-4 lg:py-5 xl:px-3 xl:py-4 2xl:px-4 2xl:py-5 shadow-lg hover:shadow-xl hover:shadow-blue-200/60 min-h-[120px] sm:min-h-[140px] lg:min-h-[160px] xl:min-h-[140px] 2xl:min-h-[160px] group relative overflow-hidden`}
                         style={{ animationDelay: `${index * 0.1}s` }}
                       >
-                        {/* Gradient overlay on hover for PC */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:to-blue-100/30 transition-all duration-500 rounded-2xl"></div>
+                        {/* ...existing code... */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:to-blue-100/30 transition-all duration-500 rounded-xl"></div>
                         
-                        <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-16 lg:h-16 xl:w-18 xl:h-18 flex items-center justify-center mb-2 sm:mb-3 lg:mb-4 relative z-10 group-hover:scale-110 transition-transform duration-300">
-                          <skill.icon className="w-8 h-8 sm:w-10 sm:h-10 lg:w-14 lg:h-14 xl:w-16 xl:h-16" color={iconColor} />
+                        <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 xl:w-10 xl:h-10 2xl:w-12 2xl:h-12 flex items-center justify-center mb-1 sm:mb-2 lg:mb-3 xl:mb-2 2xl:mb-3 relative z-10 group-hover:scale-110 transition-transform duration-300">
+                          <skill.icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10" color={iconColor} />
                         </div>
-                        <span className="font-semibold text-xs sm:text-sm lg:text-base xl:text-lg mb-2 sm:mb-3 lg:mb-4 text-center leading-tight px-1 relative z-10">{skill.name}</span>
-                        {/* Progress bar for skill level */}
-                        <div className="w-full h-1.5 sm:h-2 lg:h-2.5 bg-blue-100 rounded-full overflow-hidden mb-2 lg:mb-3 relative z-10">
+                        <span className="font-semibold text-xs sm:text-sm lg:text-base xl:text-sm 2xl:text-base mb-1 sm:mb-2 lg:mb-3 xl:mb-2 2xl:mb-3 text-center leading-tight px-1 relative z-10">{skill.name}</span>
+                        {/* ...existing code... */}
+                        <div className="w-full h-1.5 sm:h-2 lg:h-2.5 xl:h-2 2xl:h-2.5 bg-blue-100 rounded-full overflow-hidden mb-1 sm:mb-2 lg:mb-3 xl:mb-2 2xl:mb-3 relative z-10">
                           <div
                             className={
                               skill.level === 'Advanced'
@@ -225,7 +225,7 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
                             }
                           ></div>
                         </div>
-                        <span className={`relative z-10 font-bold text-xs lg:text-sm ${
+                        <span className={`relative z-10 font-bold text-xs ${
                           skill.level === 'Beginner' ? 'text-red-500' :
                           skill.level === 'Intermediate' ? 'text-yellow-500' :
                           'text-green-600'

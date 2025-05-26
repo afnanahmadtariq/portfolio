@@ -479,3 +479,117 @@ body {
 .project-card:hover::before {
   opacity: 1;
 }
+
+/* Mobile-specific styles - disable hover effects and ensure buttons are always visible */
+@media (max-width: 768px) {
+  /* Disable hover effects on project cards for mobile */
+  .project-card:hover {
+    transform: none !important;
+    box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .project-card:hover .project-image {
+    transform: none !important;
+  }
+  
+  .project-card:hover::before {
+    opacity: 0 !important;
+  }
+  
+  /* Disable skill card hover effects on mobile */
+  .skill-card:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  
+  .skill-card:hover .skill-icon {
+    animation: none !important;
+  }
+  
+  .skill-card:hover::before {
+    opacity: 0 !important;
+  }
+  
+  /* Disable navigation hover effects on mobile */
+  .hover\:text-blue-600:hover {
+    color: inherit !important;
+  }
+  
+  /* Disable button hover effects on mobile */
+  .hover\:bg-blue-700:hover {
+    background-color: rgb(37 99 235) !important;
+  }
+  
+  .hover\:shadow-xl:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+  }
+  
+  /* Ensure project buttons and indicators are always visible on mobile */
+  .project-indicator-right,
+  .project-indicator-bottom {
+    opacity: 1 !important;
+    transform: translate(0, 0) !important;
+  }
+  
+  /* Disable group hover effects on mobile */
+  .group:hover .group-hover\:opacity-100 {
+    opacity: 1 !important;
+  }
+  
+  .group:hover .group-hover\:translate-y-0 {
+    transform: translateY(0) !important;
+  }
+  
+  .group:hover .group-hover\:translate-x-0 {
+    transform: translateX(0) !important;
+  }
+  
+  .group:hover .group-hover\:from-blue-500\/10 {
+    --tw-gradient-from: rgb(59 130 246 / 0) !important;
+  }
+  
+  .group:hover .group-hover\:to-purple-500\/10 {
+    --tw-gradient-to: rgb(168 85 247 / 0) !important;
+  }
+}
+
+/* Additional mobile improvements */
+@media (max-width: 768px) {
+  /* Better touch targets for mobile */
+  .project-card a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve button sizing for mobile */
+  .project-indicator-right .project-icon,
+  .project-indicator-bottom {
+    transform: scale(1.1);
+  }
+  
+  /* Ensure proper spacing on mobile */
+  .project-indicator-right {
+    top: 1rem;
+    right: 1rem;
+  }
+  
+  .project-indicator-bottom {
+    bottom: 1rem;
+    left: 1rem;
+  }
+  
+  /* Remove any remaining hover transitions on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Improve touch feedback for all interactive elements */
+@media (pointer: coarse) {
+  .project-card,
+  .skill-card,
+  button,
+  a {
+    -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1);
+  }
+}

@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
-import { Card, CardContent } from "@/components/ui/card"
 import Navbar from '@/components/Navbar'
 import { 
   SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, 
@@ -69,49 +68,42 @@ export default function Home() {
   }, [roleIndex, typing, charIndex, currentRole, roles])
 
  
-  const skills = [
-    { 
-      name: 'Frontend Development', 
-      description: 'Expertise in React, Next.js, and modern CSS frameworks.', 
-      level: 'Advanced' 
+  // Redesigned skills section for web development
+  const webSkills = [
+    {
+      category: 'Frontend',
+      skills: [
+        { name: 'React.js', icon: SiReact, level: 'Advanced' },
+        { name: 'Next.js', icon: SiNextdotjs, level: 'Advanced' },
+        { name: 'TypeScript', icon: SiTypescript, level: 'Advanced' },
+        { name: 'HTML5', icon: SiHtml5, level: 'Advanced' },
+        { name: 'Tailwind CSS', icon: SiTailwindcss, level: 'Advanced' },
+      ]
     },
-    { 
-      name: 'UI/UX Design', 
-      description: 'Creating intuitive and visually appealing user interfaces.', 
-      level: 'Intermediate' 
+    {
+      category: 'Backend',
+      skills: [
+        { name: 'Node.js', icon: SiExpress, level: 'Intermediate' },
+        { name: 'Express.js', icon: SiExpress, level: 'Intermediate' },
+        { name: 'MongoDB', icon: SiMongodb, level: 'Intermediate' },
+      ]
     },
-    { 
-      name: 'Responsive Web Design', 
-      description: 'Ensuring seamless experiences across all devices.', 
-      level: 'Advanced' 
+    {
+      category: 'UI/UX & Tools',
+      skills: [
+        { name: 'Figma', icon: SiFigma, level: 'Intermediate' },
+        { name: 'Adobe Photoshop', icon: SiAdobephotoshop, level: 'Intermediate' },
+        { name: 'Git', icon: SiGit, level: 'Advanced' },
+      ]
     },
-    { 
-      name: 'Performance Optimization', 
-      description: 'Improving load times and overall site performance.', 
-      level: 'Beginner' 
-    },
-    { 
-      name: 'Backend Development', 
-      description: 'Experience with Node.js for building scalable server-side applications.', 
-      level: 'Intermediate' 
-    },
-    { 
-      name: 'Mobile Development', 
-      description: 'Skilled in Flutter for cross-platform mobile app development.', 
-      level: 'Intermediate' 
-    },
-    { 
-      name: 'Programming Languages', 
-      description: 'Proficiency in Java and Python for various software solutions.', 
-      level: 'Intermediate' 
-    },
-    { 
-      name: 'Prototyping and Design Tools', 
-      description: 'Familiarity with Figma for designing user-centric interfaces.', 
-      level: 'Intermediate' 
+    {
+      category: 'Other',
+      skills: [
+        { name: 'Python', icon: SiPython, level: 'Intermediate' },
+        { name: 'Flutter', icon: SiFlutter, level: 'Intermediate' },
+      ]
     }
   ];
-  
   
 
   const projects = [
@@ -183,26 +175,28 @@ export default function Home() {
         {/* Skills Section */}
         <section id="about" className="container mx-auto px-4 py-20">
           <h2 className="text-2xl font-bold mb-8 animate-fade-in-down">Skills</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {skills.map((skill, index) => (
-              <Card 
-                key={index} 
-                className="bg-white/60 backdrop-blur-md border border-gray-200 rounded-xl shadow-lg transition-transform duration-300 group md:hover:scale-105"
-              >
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-2">{skill.name}</h3>
-                  <p className="text-gray-500">{skill.description}</p>
-                  <p 
-                    className={
-                      skill.level === 'Beginner' ? 'text-red-500 font-bold' : 
-                      skill.level === 'Intermediate' ? 'text-yellow-500 font-bold' : 
-                      'text-green-600 font-bold'
-                    }
-                  >
-                    {skill.level}
-                  </p>
-                </CardContent>
-              </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {webSkills.map((group) => (
+              <div key={group.category} className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-blue-700 flex items-center gap-2">
+                  {group.category}
+                </h3>
+                <div className="flex flex-wrap gap-4">
+                  {group.skills.map((skill) => (
+                    <div key={skill.name} className="flex items-center gap-2 bg-white/70 border border-gray-200 rounded-lg px-4 py-2 shadow-sm hover:shadow-md transition">
+                      <skill.icon className="text-blue-600 w-6 h-6" />
+                      <span className="font-medium">{skill.name}</span>
+                      <span className={
+                        skill.level === 'Beginner' ? 'text-red-500 font-bold ml-2' :
+                        skill.level === 'Intermediate' ? 'text-yellow-500 font-bold ml-2' :
+                        'text-green-600 font-bold ml-2'
+                      }>
+                        {skill.level}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </section>

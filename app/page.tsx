@@ -129,13 +129,13 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
       image: '/screenshots/uttt.png',
       url: 'https://github.com/afnanahmadtariq/Tic-Tac-Ultimate.git'
     },
-    {
-      tech:'Vanilla Js',
+    {      tech:'Vanilla Js',
       title: 'Catch Me',
       description: 'Built entirely with Vanilla JavaScript, this simple yet fun game showcases the power of JavaScript in creating interactive experiences from scratch. Objective: Click on the moving icon to score points. Two Modes; Timed Mode: Rack up as many points as possible within a set time limit.Levels Mode: Icons move faster as you level up, challenging your reflexes!',
       image: '/screenshots/catch-me.png', 
       url: 'https://catchme-game.vercel.app/'
-    }  ]
+    }
+  ]
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-blue-100 text-gray-900 relative">
@@ -284,12 +284,38 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
           <h2 className="text-2xl font-bold mb-8 animate-fade-in-down">Featured Projects</h2>
           <div className="space-y-20">
             {projects.map((project, index) => (
-              <div key={index} className="grid md:grid-cols-2 gap-8 items-center">
+              <div key={index} className="grid md:grid-cols-2 gap-8 items-center group">
                   <div className={`order-2 ${index % 2 === 0 ? 'md:order-none' : ''}`}>
                     <h3 className="text-sm text-blue-600 mb-2 animate-fade-in-left">{project.tech}</h3>
-                    <h4 className="text-xl font-bold mb-4 animate-fade-in-left">{project.title}</h4>
+                    <h4 className="text-xl font-bold mb-4 animate-fade-in-left group-hover:text-blue-600 transition-colors duration-300">{project.title}</h4>
                     <p className="text-gray-500 mb-4 animate-fade-in-left">{project.description}</p>
-                  </div>                  <div className="project-card bg-white/60 backdrop-blur-md border border-gray-200 rounded-3xl p-4 shadow-lg relative overflow-hidden">
+                    
+                    {/* CTA Button that appears on hover */}
+                    <div className="opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 animate-fade-in-left">
+                      <a 
+                        href={project.url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
+                      >
+                        {project.url.includes('github.com') ? (
+                          <>
+                            <Github className="w-4 h-4" />
+                            View Code
+                          </>
+                        ) : (
+                          <>
+                            <Globe className="w-4 h-4" />
+                            Visit Site
+                          </>
+                        )}
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    </div>
+                  </div>
+                  
+                  {/* Enhanced project card */}
+                  <div className="project-card bg-white/60 backdrop-blur-md border border-gray-200 rounded-3xl p-4 shadow-lg relative overflow-hidden">
                     {/* Hover overlay with gradient */}
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 transition-all duration-500 rounded-3xl"></div>
                     
@@ -302,9 +328,7 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
                           <Globe className="w-4 h-4" />
                         )}
                       </div>
-                    </div>
-
-                    {/* Click to view indicator - bottom left */}
+                    </div>                    {/* Click to view indicator - bottom left */}
                     <div className="project-indicator-bottom absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-10">
                       <div className="bg-white/90 backdrop-blur-sm border border-gray-200 px-3 py-1 rounded-full shadow-lg flex items-center gap-2">
                         <ExternalLink className="w-3 h-3 text-blue-600" />

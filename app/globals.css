@@ -91,12 +91,57 @@ body {
   }
 }
 
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(-10px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes gentle-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.02);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(10px) translateY(-10px);
+  }
+  50% {
+    transform: translateX(-5px) translateY(-20px);
+  }
+  75% {
+    transform: translateX(-10px) translateY(-10px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
 @keyframes spin-slow {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-reverse-slow {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
   }
 }
 
@@ -120,8 +165,24 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
+.animate-float-reverse {
+  animation: float-reverse 3s ease-in-out infinite;
+}
+
+.animate-gentle-bounce {
+  animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 4s ease-in-out infinite;
+}
+
 .animate-spin-slow {
   animation: spin-slow 30s linear infinite;
+}
+
+.animate-spin-reverse-slow {
+  animation: spin-reverse-slow 30s linear infinite;
 }
 
 .blur-effect {

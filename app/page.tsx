@@ -9,11 +9,11 @@ import {
   SiMongodb, SiExpress, SiPython
 } from 'react-icons/si'
 import Footer from '@/components/Footer'
+import ParticleBackground from '@/components/ParticleBackground'
 
-export default function Home() {
-  const [currentRole, setCurrentRole] = useState('')
+export default function Home() {  const [currentRole, setCurrentRole] = useState('')
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const roles = ['Software Engineer', 'UI/UX Designer', 'Web Developer', 'Problem Solver', 'Game Developer', 'Mobile Developer']
+  const roles = ['Web Developer', 'UI/UX Designer', 'Mobile Developer', 'Software Engineer', 'Problem Solver', 'AI Enthusiast']
   const [roleIndex, setRoleIndex] = useState(0)
   const [typing, setTyping] = useState(true)
   const [charIndex, setCharIndex] = useState(0)
@@ -134,17 +134,17 @@ export default function Home() {
       description: 'Built entirely with Vanilla JavaScript, this simple yet fun game showcases the power of JavaScript in creating interactive experiences from scratch. Objective: Click on the moving icon to score points. Two Modes; Timed Mode: Rack up as many points as possible within a set time limit.Levels Mode: Icons move faster as you level up, challenging your reflexes!',
       image: '/screenshots/catch-me.png', 
       url: 'https://catchme-game.vercel.app/'
-    }
-  ]
+    }  ]
   
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-100 text-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-white to-blue-100 text-gray-900 relative">
       <Navbar />
-      <div className='main'>
-        {/* Hero Section */}
-        <section id="home" className="container mx-auto px-4 py-20 pt-32 relative">
-          <div className="max-w-2xl mx-auto text-center relative">
+      {/* Custom Particle Background */}
+      <ParticleBackground />
+      <div className='main relative z-10'>{/* Hero Section */}
+        <section id="home" className="relative min-h-screen w-full flex items-center justify-center px-4 py-20 pt-32">
+          {/* Hero Content */}
+          <div className="max-w-2xl mx-auto text-center relative z-10">
             <div className="w-32 h-32 lg:w-64 lg:h-64 mx-auto mb-6 relative flex items-center justify-center bg-white border-4 border-blue-100 shadow-lg rounded-full overflow-hidden">
               <Image
                 src="/pic.jpg"
@@ -162,12 +162,11 @@ export default function Home() {
               <span className="animate-blink text-blue-600">|</span> 
             </h2>
             <p className="text-sm lg:text-base text-gray-500 animate-fade-in-up">
-              Currently, I&apos;m a Software Engineering Student at <span className="text-blue-600">COMSATS University Islamabad</span>
-            </p>
-            <p className="text-sm lg:text-base text-gray-500 mt-4 max-w-xl mx-auto animate-fade-in-up">
-            I’m a passionate Software Engineer with a focus on creating scalable, secure, and intelligent 
-            applications. With hands-on experience in MERN, and Flutter. I build software that not only 
-            meets user needs but also integrates cutting-edge AI solutions to drive automation and innovation.
+              I&apos;m a Web Developer specializing in <span className="text-blue-600">MERN</span>
+            </p>            <p className="text-sm lg:text-base text-gray-500 mt-4 max-w-xl mx-auto animate-fade-in-up">
+            I&apos;m a passionate Web Developer with a focus on creating scalable, secure, and intelligent 
+            applications. With hands-on experience in Nextjs, Express, MongoDB and PostgreSQL. I build applications that not only 
+            meet user needs but also integrate cutting-edge AI solutions to drive automation and innovation.
             </p>
           </div>
         </section>

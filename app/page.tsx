@@ -8,6 +8,7 @@ import {
   SiHtml5, SiFigma, SiAdobephotoshop, SiGit, SiFlutter,
   SiMongodb, SiExpress, SiPython
 } from 'react-icons/si'
+import { ExternalLink, Github, Globe } from 'lucide-react'
 import Footer from '@/components/Footer'
 import ParticleBackground from '@/components/ParticleBackground'
 
@@ -278,9 +279,7 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
               ))}
             </div>
           </div>
-        </section>
-
-        {/* Projects */}
+        </section>        {/* Projects */}
         <section id="projects" className="container mx-auto px-4 py-20">
           <h2 className="text-2xl font-bold mb-8 animate-fade-in-down">Featured Projects</h2>
           <div className="space-y-20">
@@ -290,15 +289,43 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
                     <h3 className="text-sm text-blue-600 mb-2 animate-fade-in-left">{project.tech}</h3>
                     <h4 className="text-xl font-bold mb-4 animate-fade-in-left">{project.title}</h4>
                     <p className="text-gray-500 mb-4 animate-fade-in-left">{project.description}</p>
-                  </div>
-                  <div className="bg-white/60 backdrop-blur-md border border-gray-200 rounded-3xl p-4 shadow-lg transition-transform cursor-pointer duration-300 group md:hover:scale-105 ">
-                    <a href={project.url} target="_blank" rel="noopener noreferrer">
+                  </div>                  <div className="project-card bg-white/60 backdrop-blur-md border border-gray-200 rounded-3xl p-4 shadow-lg relative overflow-hidden">
+                    {/* Hover overlay with gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 group-hover:from-blue-500/10 group-hover:to-purple-500/10 transition-all duration-500 rounded-3xl"></div>
+                    
+                    {/* External link indicator - top right */}
+                    <div className="project-indicator-right absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0 z-10">
+                      <div className="project-icon bg-blue-600 text-white p-2 rounded-full shadow-lg">
+                        {project.url.includes('github.com') ? (
+                          <Github className="w-4 h-4" />
+                        ) : (
+                          <Globe className="w-4 h-4" />
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Click to view indicator - bottom left */}
+                    <div className="project-indicator-bottom absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-10">
+                      <div className="bg-white/90 backdrop-blur-sm border border-gray-200 px-3 py-1 rounded-full shadow-lg flex items-center gap-2">
+                        <ExternalLink className="w-3 h-3 text-blue-600" />
+                        <span className="text-xs font-medium text-gray-700">
+                          {project.url.includes('github.com') ? 'View Code' : 'Visit Site'}
+                        </span>
+                      </div>
+                    </div>
+
+                    <a 
+                      href={project.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="block relative z-0"
+                    >
                       <Image
                         src={project.image} 
                         alt={`${project.title} screenshot`}
                         width={800}
                         height={400}
-                        className="rounded-2xl"
+                        className="project-image rounded-2xl transition-all duration-500 overflow-hidden"
                       />
                     </a>
                   </div>

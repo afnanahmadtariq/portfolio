@@ -360,3 +360,115 @@ body {
     transition: transform 0.1s ease;
   }
 }
+
+/* Enhanced Project Card Hover Effects */
+@keyframes project-card-hover {
+  0% {
+    transform: scale(1) rotateY(0deg);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    transform: scale(1.05) rotateY(2deg);
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
+  }
+}
+
+@keyframes project-image-zoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slide-in-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slide-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8);
+  }
+}
+
+/* Project card specific styles */
+.project-card {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.project-card:hover {
+  animation: project-card-hover 0.5s ease-out forwards;
+}
+
+.project-card:hover .project-image {
+  animation: project-image-zoom 0.5s ease-out forwards;
+}
+
+.project-card:hover .project-indicator-right {
+  animation: slide-in-from-right 0.3s ease-out forwards;
+}
+
+.project-card:hover .project-indicator-bottom {
+  animation: slide-in-from-bottom 0.3s ease-out forwards;
+}
+
+.project-card:hover .project-icon {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Enhance cursor feedback */
+.project-card {
+  cursor: pointer;
+}
+
+.project-card:active {
+  transform: scale(1.02);
+  transition: transform 0.1s ease;
+}
+
+/* Add subtle border animation on hover */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 24px;
+  padding: 2px;
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.5), rgba(147, 51, 234, 0.5));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: exclude;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}

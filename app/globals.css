@@ -214,3 +214,149 @@ body {
     opacity: 0;
   }
 }
+
+/* Skills Section Mobile Enhancements */
+@media (max-width: 640px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .skill-card {
+    min-height: 140px;
+    padding: 0.75rem;
+    min-width: 120px;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .skill-card {
+    min-height: 160px;
+    min-width: 140px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .skill-card {
+    min-height: 190px;
+    min-width: 160px;
+    border-radius: 1rem;
+    padding: 1.75rem 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 0 0 1px rgba(59, 130, 246, 0.1);
+  }
+}
+
+/* Enhanced styles for extra large screens */
+@media (min-width: 1280px) {
+  .skills-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .skill-card {
+    min-height: 200px;
+    min-width: 180px;
+    padding: 2rem 1.75rem;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 35px 60px -12px rgba(59, 130, 246, 0.3), 0 0 0 1px rgba(59, 130, 246, 0.15);
+  }
+}
+
+/* Ultra-wide screen optimizations */
+@media (min-width: 1536px) {
+  .skills-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .skill-card {
+    min-height: 210px;
+    min-width: 200px;
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* Smooth transitions for all skill cards */
+.skill-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+/* Enhanced hover effects for desktop */
+@media (hover: hover) and (pointer: fine) {
+  .skill-card:hover .skill-icon {
+    animation: gentle-bounce 0.6s ease-in-out;
+  }
+  
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(147, 197, 253, 0.1));
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .skill-card:hover::before {
+    opacity: 1;
+  }
+}
+
+/* Staggered animation for skills appearing */
+@keyframes skillFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skill-card {
+  animation: skillFadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+}
+
+/* Stagger the animations */
+.skill-card:nth-child(1) { animation-delay: 0.1s; }
+.skill-card:nth-child(2) { animation-delay: 0.2s; }
+.skill-card:nth-child(3) { animation-delay: 0.3s; }
+.skill-card:nth-child(4) { animation-delay: 0.4s; }
+.skill-card:nth-child(5) { animation-delay: 0.5s; }
+.skill-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Touch-friendly hover states for mobile */
+@media (hover: none) {
+  .skill-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+}

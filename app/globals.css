@@ -361,46 +361,33 @@ body {
   }
 }
 
-/* Enhanced Project Card Hover Effects */
-@keyframes project-card-hover {
-  0% {
-    transform: scale(1) rotateY(0deg);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  }
-  100% {
-    transform: scale(1.05) rotateY(2deg);
-    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
-  }
+/* Enhanced Project Card Hover Effects - Removed problematic scaling animations */
+
+/* Keep image zoom isolated and contained */
+.project-image {
+  transition: transform 0.3s ease;
+  will-change: transform;
 }
 
-@keyframes project-image-zoom {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
+/* Smooth indicator animations without scaling */
 @keyframes slide-in-from-right {
   0% {
     opacity: 0;
-    transform: translateX(20px) scale(0.8);
+    transform: translateX(20px);
   }
   100% {
-    opacity: 1;
-    transform: translateX(0) scale(1);
+    opacity: 1;    transform: translateX(0);
   }
 }
 
 @keyframes slide-in-from-bottom {
   0% {
     opacity: 0;
-    transform: translateY(20px) scale(0.8);
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -415,29 +402,49 @@ body {
 
 /* Project card specific styles */
 .project-card {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .project-card:hover {
-  animation: project-card-hover 0.5s ease-out forwards;
+  transform: translateY(-8px) translateZ(0);
+  box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
 }
 
 .project-card:hover .project-image {
-  animation: project-image-zoom 0.5s ease-out forwards;
+  transform: scale(1.05);
 }
 
 .project-card:hover .project-indicator-right {
-  animation: slide-in-from-right 0.3s ease-out forwards;
+  opacity: 1;
+  transform: translateX(0) translateZ(0);
 }
 
 .project-card:hover .project-indicator-bottom {
-  animation: slide-in-from-bottom 0.3s ease-out forwards;
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
+
+/* Keep icons sharp and unaffected by transforms */
+.project-icon {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: box-shadow;
+  transition: box-shadow 0.3s ease;
 }
 
 .project-card:hover .project-icon {
-  animation: glow-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6);
+}
+
+/* Ensure indicator containers maintain their position and sharpness */
+.project-indicator-right,
+.project-indicator-bottom {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  filter: none;
 }
 
 /* Enhance cursor feedback */
@@ -446,7 +453,7 @@ body {
 }
 
 .project-card:active {
-  transform: scale(1.02);
+  transform: translateY(-4px) scale(0.98);
   transition: transform 0.1s ease;
 }
 

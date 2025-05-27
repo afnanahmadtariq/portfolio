@@ -110,42 +110,42 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
   const projects = [
   {
     "tech": "Next.js | Tailwind CSS",
-    "title": "Web Craft Site",
+    "title": "Web Craft",
     "description": "A modern web platform showcasing UI/UX design, web development, and website redesign services. Implemented a clean, responsive interface to highlight various project categories and service offerings.",
     "image": "/screenshots/web-craft-site.png",
     "url": "https://web-craft-site.vercel.app/"
   },
   {
     "tech": "NextJs | ShacdCN UI",
-    "title": "News Hub Site",
+    "title": "News Hub",
     "description": "A dynamic news aggregation platform designed for efficient content delivery and user engagement. Features a structured layout to present diverse articles, ensuring a seamless Browse experience.",
     "image": "/screenshots/news-hub-site.png",
     "url": "https://news-hub-site.vercel.app/"
   },
   {
     "tech": "NextJs | MongoDB",
-    "title": "Learn Hub Site",
+    "title": "Learn Hub",
     "description": "An educational platform focusing on personalized learning paths with intelligent feedback. Designed for practical skill development and industry-relevant projects, fostering rapid progress for users.",
     "image": "/screenshots/learn-hub-site.png",
     "url": "https://learn-hub-site.vercel.app/"
   },
   {
     "tech": "Next.js | MongoDB | Express.js",
-    "title": "Modern Shop Site",
+    "title": "Modern Shop",
     "description": "A premium e-commerce store with a focus on a seamless shopping experience and modern design. Features product catalog display, shopping cart functionality, and dynamic total calculation.",
     "image": "/screenshots/modern-shop-site.png",
     "url": "https://modern-shop-site.vercel.app/"
   },
   {
     "tech": "Next.js | MongoDB",
-    "title": "Track Pro Site",
+    "title": "Track Pro",
     "description": "A professional vehicle tracking solution offering real-time GPS tracking and fleet management capabilities. Includes features for detailed analytics, maintenance alerts, and driver behavior monitoring.",
     "image": "/screenshots/track-pro-site.png",
     "url": "https://track-pro-site.vercel.app/"
   },
   {
     "tech": "NextJs | Tailwind CSS",
-    "title": "Business Website Site",
+    "title": "Business Website",
     "description": "A comprehensive business website offering services such as digital marketing and business consulting. Showcases a range of custom solutions and data analytics, emphasizing personalized strategies and measurable results.",
     "image": "/screenshots/business-website-site.png",
     "url": "https://business-website-site.vercel.app/"

@@ -108,34 +108,49 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
   
 
   const projects = [
-    {
-      tech:'Flutter | Python',
-      title: 'Agen',
-      description: 'Agen is an innovative app that automates the process of generating assignments by scraping relevant content from across the internet. Imagine a tool that can pull up-to-date information, organize it, and generate structured assignments in a matter of seconds. Whether you\'re a student, educator, or content creator, Agen will save you tons of time by doing the heavy lifting for you!',
-      image: '/screenshots/agen.png', 
-      url: 'https://github.com/afnanahmadtariq/Agen/releases'
-    },
-    {
-      tech:'ReactJs | Bootstrap',
-      title: 'Weather Forecast',
-      description: 'This Weather Forecast App provides users with real-time weather information based on geographic coordinates (latitude and longitude). Built with React and Bootstrap, the app features a clean, user-friendly interface where users can input location details and view weather forecasts for that area.',
-      image: '/screenshots/weather.png',
-      url: 'https://weather-forecast-ruddy-gamma.vercel.app/'
-    },
-    {
-      tech:'Java | JavaFX',
-      title: 'Tic Tac Ultimate | Quixo',
-      description: 'This project brings three iconic games into one seamless experience; Tic Tac Toe: The classic 3x3 grid. Ultimate Tic Tac Toe: A more complex version with 9 smaller grids, adding layers of strategy. Quixo: A fun variation with shifting tiles that adds a unique twist to traditional Tic Tac Toe!',
-      image: '/screenshots/uttt.png',
-      url: 'https://github.com/afnanahmadtariq/Tic-Tac-Ultimate.git'
-    },
-    {      tech:'Vanilla Js',
-      title: 'Catch Me',
-      description: 'Built entirely with Vanilla JavaScript, this simple yet fun game showcases the power of JavaScript in creating interactive experiences from scratch. Objective: Click on the moving icon to score points. Two Modes; Timed Mode: Rack up as many points as possible within a set time limit.Levels Mode: Icons move faster as you level up, challenging your reflexes!',
-      image: '/screenshots/catch-me.png', 
-      url: 'https://catchme-game.vercel.app/'
-    }
-  ]
+  {
+    "tech": "Next.js | Tailwind CSS",
+    "title": "Web Craft Site",
+    "description": "A modern web platform showcasing UI/UX design, web development, and website redesign services. Implemented a clean, responsive interface to highlight various project categories and service offerings.",
+    "image": "/screenshots/web-craft-site.png",
+    "url": "https://web-craft-site.vercel.app/"
+  },
+  {
+    "tech": "NextJs | ShacdCN UI",
+    "title": "News Hub Site",
+    "description": "A dynamic news aggregation platform designed for efficient content delivery and user engagement. Features a structured layout to present diverse articles, ensuring a seamless Browse experience.",
+    "image": "/screenshots/news-hub-site.png",
+    "url": "https://news-hub-site.vercel.app/"
+  },
+  {
+    "tech": "NextJs | MongoDB",
+    "title": "Learn Hub Site",
+    "description": "An educational platform focusing on personalized learning paths with intelligent feedback. Designed for practical skill development and industry-relevant projects, fostering rapid progress for users.",
+    "image": "/screenshots/learn-hub-site.png",
+    "url": "https://learn-hub-site.vercel.app/"
+  },
+  {
+    "tech": "Next.js | MongoDB | Express.js",
+    "title": "Modern Shop Site",
+    "description": "A premium e-commerce store with a focus on a seamless shopping experience and modern design. Features product catalog display, shopping cart functionality, and dynamic total calculation.",
+    "image": "/screenshots/modern-shop-site.png",
+    "url": "https://modern-shop-site.vercel.app/"
+  },
+  {
+    "tech": "Next.js | MongoDB",
+    "title": "Track Pro Site",
+    "description": "A professional vehicle tracking solution offering real-time GPS tracking and fleet management capabilities. Includes features for detailed analytics, maintenance alerts, and driver behavior monitoring.",
+    "image": "/screenshots/track-pro-site.png",
+    "url": "https://track-pro-site.vercel.app/"
+  },
+  {
+    "tech": "NextJs | Tailwind CSS",
+    "title": "Business Website Site",
+    "description": "A comprehensive business website offering services such as digital marketing and business consulting. Showcases a range of custom solutions and data analytics, emphasizing personalized strategies and measurable results.",
+    "image": "/screenshots/business-website-site.png",
+    "url": "https://business-website-site.vercel.app/"
+  }
+]
   
   return (
     <div className="min-h-screen bg-gradient-to-br from-white to-blue-100 text-gray-900 relative">

@@ -116,7 +116,7 @@ const Footer: React.FC = () => {
     >
       <div className="absolute left-[-60px] bottom-[-60px] blur-2xl animate-float z-0 bg-blue-200/60 rounded-full w-60 h-60" />
       <div className="absolute right-[-60px] top-[-60px] blur-2xl bg-blue-300/40 animate-spin-slow z-0 rounded-full w-60 h-60" />
-      <div className="container mx-auto sm:px-24 relative z-10 flex flex-col sm:flex-row justify-between flex-grow py-8">
+      <div className="container mx-auto sm:px-24 relative z-10 flex flex-col sm:flex-row justify-between flex-grow py-24 sm:py-0">
         <div className="flex flex-col sm:pl-36 justify-center items-center w-full sm:w-auto mb-8 sm:mb-0 animate-fade-in-up">
           <section className="mb-8 text-center">
             <h2 className="text-lg md:text-xl font-semibold mb-4 tracking-wide">Contact</h2>

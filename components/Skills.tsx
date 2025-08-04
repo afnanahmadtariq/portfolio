@@ -149,7 +149,7 @@ export default function Skills() {
         <div className="relative hidden md:flex items-center justify-center w-[18rem] h-full">
           <div
             ref={circleRef}
-            className="absolute w-[36rem] h-[36rem] -left-[22rem] flex items-center justify-center transition-all duration-300 "
+            className="absolute w-[36rem] h-[36rem] -left-[22rem] flex items-center justify-center transition-all duration-300"
             style={{
               borderRadius: '50%',
               background: 'rgba(255,255,255,0.7)',
@@ -170,7 +170,7 @@ export default function Skills() {
               return (
                 <button
                   key={group.category}
-                  className={`absolute flex flex-col items-center justify-center rounded-full border-2 shadow-lg bg-white/80 hover:bg-blue-100 ${isSelected ? 'border-blue-500 scale-110 z-20' : 'border-blue-200 scale-100 z-10'} w-14 h-14`}
+                  className={`absolute flex flex-col items-center justify-center transition-all duration-300 rounded-full border-2 shadow-lg bg-white/80 hover:bg-blue-100 ${isSelected ? 'border-blue-500 scale-110 z-20' : 'border-blue-200 scale-100 z-10'} w-14 h-14`}
                   style={{
                     left: x - 28,
                     top: y - 28,

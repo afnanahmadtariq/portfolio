@@ -10,10 +10,25 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      // Check if we're in a scroll container or window scroll
+      const scrollContainer = document.querySelector('.snap-y')
+      const scrollY = scrollContainer ? scrollContainer.scrollTop : window.scrollY
+      setIsScrolled(scrollY > 10)
+    }
+    
+    // Listen to both window scroll and scroll container
+    const scrollContainer = document.querySelector('.snap-y')
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll)
     }
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', handleScroll)
+      }
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const handleMenuClick = (id: string) => {
@@ -25,7 +40,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav id='navbar' className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'} border-b border-gray-200`}>
+    <nav id='navbar' className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${isScrolled ? 'bg-white' : 'bg-transparent'} border-b border-gray-200`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-3">
           <Link href="/" className="text-2xl font-bold">

@@ -8,11 +8,29 @@ import {
   SiGithub, SiIntellijidea
 } from 'react-icons/si'
 import {Shield, Lock, Key, Users, Coffee } from 'lucide-react'
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 
 
 import { useState, useRef, useEffect } from 'react';
+import { motion} from 'framer-motion';
 
 export default function Skills() {
+  // Keen slider for mobile
+  const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    slides: { perView: 3, spacing: 8 },
+    mode: "free",
+  });
+
+  // Auto-rotate slider
+  useEffect(() => {
+    if (!slider || !slider.current) return;
+    const interval = setInterval(() => {
+      slider.current?.next();
+    }, 2000); // 2 seconds per slide
+    return () => clearInterval(interval);
+  }, [slider]);
 
   const webSkills = [
     {
@@ -125,65 +143,128 @@ export default function Skills() {
     };
   }, [webSkills.length]);
 
+  // Track previous index for shortest rotation
+  const prevIdxRef = useRef(selectedCategoryIdx);
+  const rotationRef = useRef(((-selectedCategoryIdx * (360 / webSkills.length)) + 90));
+
+  // Calculate shortest rotation angle
+  function getShortestRotation(prevIdx: number, newIdx: number, total: number) {
+    const prevAngle = (-prevIdx * (360 / total)) + 90;
+    const newAngle = (-newIdx * (360 / total)) + 90;
+    let diff = newAngle - prevAngle;
+    // Wrap around for shortest path
+    if (diff > 180) diff -= 360;
+    if (diff < -180) diff += 360;
+    return rotationRef.current + diff;
+  }
+
+  // Compute rotation for framer-motion
+  const [rotation, setRotation] = useState(((-selectedCategoryIdx * (360 / webSkills.length)) + 90));
+  useEffect(() => {
+    const newRotation = getShortestRotation(prevIdxRef.current, selectedCategoryIdx, webSkills.length);
+    setRotation(newRotation);
+    console.log(`Rotation updated: ${newRotation} degrees`);
+    rotationRef.current = newRotation;
+    prevIdxRef.current = selectedCategoryIdx;
+  }, [selectedCategoryIdx, webSkills.length]);
+
   return (
     <section id="skills" className="container bg-gradient-to-br from-white to-blue-100 h-[calc(100vh-4rem)] w-full flex items-center">
-      <div className="flex flex-row w-full h-full">
+      <div className="flex flex-col md:flex-row w-full h-full">
         {/* Circular Category Slider - half visible, rotates */}
-        <div className="relative flex items-center justify-center w-[18rem] h-full">
-          <div
+        <div className="relative hidden md:flex items-center justify-center w-[18rem] h-full">
+          <motion.div
             ref={circleRef}
-            className="absolute w-[36rem] h-[36rem] -left-[22rem] flex items-center justify-center transition-all duration-300 "
+            className="absolute w-[36rem] h-[36rem] -left-[22rem] flex items-center justify-center"
             style={{
               borderRadius: '50%',
               background: 'rgba(255,255,255,0.7)',
               boxShadow: '0 4px 32px #60A5FA22',
               border: '2px solid #60A5FA33',
               overflow: 'visible',
-              transform: `rotate(${(-selectedCategoryIdx * (360 / webSkills.length)) + 90}deg)`
             }}
             tabIndex={0}
+            animate={{
+              rotate: rotation
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 300,
+              damping: 30
+            }}
           >
             {webSkills.map((group, idx) => {
               const angle = (360 / webSkills.length) * idx;
               const rad = (angle * Math.PI) / 180;
-              const r = 230;
+              const r = 270;
               const x = 288 + r * Math.cos(rad - Math.PI / 2);
               const y = 288 + r * Math.sin(rad - Math.PI / 2);
               const isSelected = idx === selectedCategoryIdx;
               return (
-                <button
+                <motion.button
                   key={group.category}
-                  className={`absolute flex flex-col items-center justify-center rounded-full border-2 shadow-lg bg-white/80 hover:bg-blue-100 ${isSelected ? 'border-blue-500 scale-110 z-20' : 'border-blue-200 scale-100 z-10'} w-14 h-14`}
+                  className={`absolute flex flex-col items-center justify-center rounded-2xl border-2 shadow-lg bg-white/80 hover:bg-blue-100 ${isSelected ? 'border-blue-500 scale-110 z-20' : 'border-blue-200 scale-100 z-10'} w-24 h-24`}
                   style={{
-                    left: x - 28,
-                    top: y - 28,
+                    left: x - 48,
+                    top: y - 48,
                     boxShadow: isSelected ? '0 0 0 4px #60A5FA33' : undefined,
-                    transform: `rotate(${selectedCategoryIdx * (360 / webSkills.length) - 90}deg)`
                   }}
+                  animate={{ rotate: rotation * -1 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   onClick={() => setSelectedCategoryIdx(idx)}
                   aria-label={group.category}
                 >
                   {/* Category Icon */}
-                  {group.category === 'Languages' && <SiJavascript className="w-7 h-7" style={{ color: '#F7DF1E' }} />}
-                  {group.category === 'Frontend' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
-                  {group.category === 'Backend' && <SiNodedotjs className="w-7 h-7" style={{ color: '#339933' }} />}
-                  {group.category === 'Security & Auth' && <Shield className="w-7 h-7" style={{ color: '#FF6B6B' }} />}
-                  {group.category === 'Cloud' && <SiAmazon className="w-7 h-7" style={{ color: '#FF9900' }} />}
-                  {group.category === 'Databases' && <SiMongodb className="w-7 h-7" style={{ color: '#47A248' }} />}
-                  {group.category === 'DevOps' && <SiGit className="w-7 h-7" style={{ color: '#F05032' }} />}
-                  {group.category === 'Tools' && <SiVisualstudiocode className="w-7 h-7" style={{ color: '#007ACC' }} />}
-                  {group.category === 'Mobile App Development' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
-                  <span className={`text-xs font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-500'}`}>{group.category.split(' ')[0]}</span>
-                </button>
+                  {group.category === 'Languages' && <SiJavascript className="w-9 h-9" style={{ color: '#F7DF1E' }} />}
+                  {group.category === 'Frontend' && <SiReact className="w-9 h-9" style={{ color: '#61DAFB' }} />}
+                  {group.category === 'Backend' && <SiNodedotjs className="w-9 h-9" style={{ color: '#339933' }} />}
+                  {group.category === 'Security & Auth' && <Shield className="w-9 h-9" style={{ color: '#FF6B6B' }} />}
+                  {group.category === 'Cloud' && <SiAmazon className="w-9 h-9" style={{ color: '#FF9900' }} />}
+                  {group.category === 'Databases' && <SiMongodb className="w-9 h-9" style={{ color: '#47A248' }} />}
+                  {group.category === 'DevOps' && <SiGit className="w-9 h-9" style={{ color: '#F05032' }} />}
+                  {group.category === 'Tools' && <SiVisualstudiocode className="w-9 h-9" style={{ color: '#007ACC' }} />}
+                  {group.category === 'Mobile App Development' && <SiReact className="w-9 h-9" style={{ color: '#61DAFB' }} />}
+                  <span className={`text-base font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-400'}`}>{group.category.split(' ')[0]}</span>
+                </motion.button>
+              );
+            })}
+          </motion.div>
+        </div>
+        {/* Mobile Category Slider - keen-slider infinite */}
+        <div className="md:hidden w-full py-4 px-2 mb-2 bg-white">
+          <div ref={sliderRef} className="keen-slider">
+            {webSkills.map((group, idx) => {
+              const isSelected = idx === selectedCategoryIdx;
+              return (
+                <div className="keen-slider__slide py-2 px-2" key={group.category}>
+                  <button
+                    className={`flex flex-col items-center justify-center rounded-xl border-2 bg-white/80 hover:bg-blue-100 transition-all duration-200 min-w-[72px] w-16 h-16 ${isSelected ? 'border-blue-500 scale-110' : 'border-blue-200 scale-100'}`}
+                    style={{ boxShadow: isSelected ? '0 0 0 4px #60A5FA33' : undefined }}
+                    onClick={() => setSelectedCategoryIdx(idx)}
+                    aria-label={group.category}
+                  >
+                    {/* Category Icon */}
+                    {group.category === 'Languages' && <SiJavascript className="w-4 h-4" style={{ color: '#F7DF1E' }} />}
+                    {group.category === 'Frontend' && <SiReact className="w-4 h-4" style={{ color: '#61DAFB' }} />}
+                    {group.category === 'Backend' && <SiNodedotjs className="w-4 h-4" style={{ color: '#339933' }} />}
+                    {group.category === 'Security & Auth' && <Shield className="w-4 h-4" style={{ color: '#FF6B6B' }} />}
+                    {group.category === 'Cloud' && <SiAmazon className="w-4 h-4" style={{ color: '#FF9900' }} />}
+                    {group.category === 'Databases' && <SiMongodb className="w-4 h-4" style={{ color: '#47A248' }} />}
+                    {group.category === 'DevOps' && <SiGit className="w-4 h-4" style={{ color: '#F05032' }} />}
+                    {group.category === 'Tools' && <SiVisualstudiocode className="w-4 h-4" style={{ color: '#007ACC' }} />}
+                    {group.category === 'Mobile App Development' && <SiReact className="w-4 h-4" style={{ color: '#61DAFB' }} />}
+                    <span className={`text-xs font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-400'}`}>{group.category.split(' ')[0]}</span>
+                  </button>
+                </div>
               );
             })}
           </div>
         </div>
         {/* Skills Display - Modern Grid Layout */}
-        <div className="flex-1 flex flex-col justify-center items-center px-4 py-8">
-          <div className="mb-8 flex flex-col items-center">
-            <div className="flex items-center gap-4 mb-2">
-              <div className="w-14 h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 shadow-lg border border-blue-300">
+        <div className="md:flex-1 flex flex-col justify-center items-center px-2 py-4 sm:px-4 sm:py-8">
+          <div className="mb-6 sm:mb-8 flex flex-col items-center">
+            <div className="flex items-center gap-3 sm:gap-4 mb-2">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-white to-blue-50 shadow-lg border border-blue-300">
                 {selectedGroup.category === 'Languages' && <SiJavascript className="w-8 h-8" style={{ color: '#F7DF1E' }} />}
                 {selectedGroup.category === 'Frontend' && <SiReact className="w-8 h-8" style={{ color: '#61DAFB' }} />}
                 {selectedGroup.category === 'Backend' && <SiNodedotjs className="w-8 h-8" style={{ color: '#339933' }} />}
@@ -194,11 +275,11 @@ export default function Skills() {
                 {selectedGroup.category === 'Tools' && <SiVisualstudiocode className="w-8 h-8" style={{ color: '#007ACC' }} />}
                 {selectedGroup.category === 'Mobile App Development' && <SiReact className="w-8 h-8" style={{ color: '#61DAFB' }} />}
               </div>
-              <h3 className="text-2xl font-bold text-blue-800 tracking-tight">{selectedGroup.category}</h3>
+              <h3 className="text-lg sm:text-2xl font-bold text-blue-800 tracking-tight">{selectedGroup.category}</h3>
             </div>
-            <span className="text-base text-blue-500 font-medium">Explore my skills in {selectedGroup.category.toLowerCase()}.</span>
+            <span className="text-sm sm:text-base text-blue-500 font-medium">Explore my skills in {selectedGroup.category.toLowerCase()}.</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full max-w-4xl">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 w-full sm:max-w-4xl">
             {selectedGroup.skills.map((skill, index) => {
               let iconColor = '#60A5FA';
               if (skill.name === 'JavaScript') iconColor = '#F7DF1E';
@@ -238,14 +319,14 @@ export default function Skills() {
               return (
                 <div
                   key={skill.name}
-                  className="flex flex-col items-center bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-5 border border-blue-100 group relative"
+                  className="flex flex-col items-center bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-3 sm:p-5 border border-blue-100 group relative"
                   style={{ animationDelay: `${index * 0.08}s` }}
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-blue-100 mb-3 border border-blue-200 group-hover:scale-110 transition-transform duration-300">
-                    <skill.icon className="w-8 h-8" color={iconColor} />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-white to-blue-50 mb-2 sm:mb-3 border border-blue-200 group-hover:scale-110 transition-transform duration-300">
+                    <skill.icon className="w-7 h-7 sm:w-8 sm:h-8" color={iconColor} />
                   </div>
-                  <span className="font-semibold text-base text-blue-700 mb-2 text-center">{skill.name}</span>
-                  <div className="w-full h-2 bg-blue-100 rounded-full overflow-hidden mb-2">
+                  <span className="font-semibold text-sm sm:text-base text-blue-700 mb-1 sm:mb-2 text-center">{skill.name}</span>
+                  <div className="w-full h-2 bg-blue-100 rounded-full overflow-hidden mb-1 sm:mb-2">
                     <div
                       className={
                         skill.level === 'Advanced'
@@ -256,7 +337,7 @@ export default function Skills() {
                       }
                     ></div>
                   </div>
-                  <span className={`font-bold text-xs ${
+                  <span className={`font-bold text-xs sm:text-xs ${
                     skill.level === 'Beginner' ? 'text-red-500' :
                     skill.level === 'Intermediate' ? 'text-yellow-500' :
                     'text-green-600'

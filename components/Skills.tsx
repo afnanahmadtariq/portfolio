@@ -13,7 +13,7 @@ import { useKeenSlider } from "keen-slider/react";
 
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion} from 'framer-motion';
 
 export default function Skills() {
   // Keen slider for mobile
@@ -264,7 +264,7 @@ export default function Skills() {
         <div className="md:flex-1 flex flex-col justify-center items-center px-2 py-4 sm:px-4 sm:py-8">
           <div className="mb-6 sm:mb-8 flex flex-col items-center">
             <div className="flex items-center gap-3 sm:gap-4 mb-2">
-              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-100 to-blue-200 shadow-lg border border-blue-300">
+              <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-white to-blue-50 shadow-lg border border-blue-300">
                 {selectedGroup.category === 'Languages' && <SiJavascript className="w-8 h-8" style={{ color: '#F7DF1E' }} />}
                 {selectedGroup.category === 'Frontend' && <SiReact className="w-8 h-8" style={{ color: '#61DAFB' }} />}
                 {selectedGroup.category === 'Backend' && <SiNodedotjs className="w-8 h-8" style={{ color: '#339933' }} />}
@@ -322,7 +322,7 @@ export default function Skills() {
                   className="flex flex-col items-center bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-3 sm:p-5 border border-blue-100 group relative"
                   style={{ animationDelay: `${index * 0.08}s` }}
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-blue-100 mb-2 sm:mb-3 border border-blue-200 group-hover:scale-110 transition-transform duration-300">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-white to-blue-50 mb-2 sm:mb-3 border border-blue-200 group-hover:scale-110 transition-transform duration-300">
                     <skill.icon className="w-7 h-7 sm:w-8 sm:h-8" color={iconColor} />
                   </div>
                   <span className="font-semibold text-sm sm:text-base text-blue-700 mb-1 sm:mb-2 text-center">{skill.name}</span>

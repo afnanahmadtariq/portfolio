@@ -14,7 +14,7 @@ import ParticleBackground from '@/components/ParticleBackground'
 
 export default function Home() {  const [currentRole, setCurrentRole] = useState('')
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const roles = ['Web Developer', 'UI/UX Designer', 'Mobile Developer', 'Software Engineer', 'Problem Solver', 'AI Enthusiast']
+  const roles = ['Full Stack Developer', 'UI/UX Designer', 'Software Engineer', 'Problem Solver', 'Cyber Enthusiast', 'AI Enthusiast']
   const [roleIndex, setRoleIndex] = useState(0)
   const [typing, setTyping] = useState(true)
   const [charIndex, setCharIndex] = useState(0)
@@ -109,11 +109,11 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
 
   const projects = [
   {
-    "tech": "Next.js | Tailwind CSS",
-    "title": "Web Craft",
-    "description": "A modern web platform showcasing UI/UX design, web development, and website redesign services. Implemented a clean, responsive interface to highlight various project categories and service offerings.",
-    "image": "/screenshots/web-craft-site.png",
-    "url": "https://web-craft-site.vercel.app/"
+    "tech": "Next.js | TailwindCSS | FramerMotion | Emailjs | MongoDB",
+    "title": "Devstract",
+    "description": "Devstract is a modern web platform featuring responsive design, dynamic animations, reusable UI components, and robust APIs for user subscription and email communication. It includes dedicated pages for contact, FAQs, legal policies, and an engaging carousel, delivering a seamless and interactive user experience.",
+    "image": "/screenshots/devstract.png",
+    "url": "https://devstract.vercel.app/"
   },
   {
     "tech": "NextJs | ShacdCN UI",
@@ -157,13 +157,14 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
       <Navbar />
       {/* Custom Particle Background */}
       <ParticleBackground />
-      <div className='main relative z-10'>{/* Hero Section */}
+      <div className='main relative z-10'>
+        {/* Hero Section */}
         <section id="home" className="relative min-h-screen w-full flex items-center justify-center px-4 py-20 pt-32">
           {/* Hero Content */}
           <div className="max-w-2xl mx-auto text-center relative z-10">
-            <div className="w-32 h-32 lg:w-64 lg:h-64 mx-auto mb-6 relative flex items-center justify-center bg-white border-4 border-blue-100 shadow-lg rounded-full overflow-hidden">
+            <div className="w-32 h-32 lg:w-64 lg:h-64 mx-auto mb-6 relative flex items-center justify-center shadow-lg rounded-full overflow-hidden">
               <Image
-                src="/pic.jpg"
+                src="/photo.png"
                 alt="Avatar"
                 width={512}
                 height={512}
@@ -176,13 +177,9 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
             <h2 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-up">
               I&apos;m a <span className="text-blue-600">{currentRole}</span>
               <span className="animate-blink text-blue-600">|</span> 
-            </h2>
-            <p className="text-sm lg:text-base text-gray-500 animate-fade-in-up">
-              I&apos;m a Web Developer specializing in <span className="text-blue-600">MERN</span>
-            </p>            <p className="text-sm lg:text-base text-gray-500 mt-4 max-w-xl mx-auto animate-fade-in-up">
-            I&apos;m a passionate Web Developer with a focus on creating scalable, secure, and intelligent 
-            applications. With hands-on experience in Nextjs, Express, MongoDB and PostgreSQL. I build applications that not only 
-            meet user needs but also integrate cutting-edge AI solutions to drive automation and innovation.
+            </h2>          
+            <p className="text-sm lg:text-2xl text-gray-500 mt-4 max-w-8xl mx-auto animate-fade-in-up">
+            Full Stack Developer passionate about building scalable web and mobile applications with modern technologies. Experienced in Next.js, Tailwind CSS, Node.js, MongoDB, Docker, and Azure. I create intuitive user experiences, integrate AI tools, and thrive in collaborative, cross-functional teams. Proven problem solver with a track record in coding competitions and hackathons. Open to new opportunities and challenges.
             </p>
           </div>
         </section>        {/* Skills Section */}

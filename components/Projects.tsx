@@ -100,10 +100,7 @@ export default function Projects() {
                 </div>
                 {/* Image on right */}
                 <div className="relative w-full md:w-4/5 h-56 md:h-[35rem] flex items-center justify-center md:-mt-[5rem]">
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <span
                     className="block w-full h-full"
                   >
                     <Image
@@ -113,7 +110,7 @@ export default function Projects() {
                       objectFit="contain"
                       className="rounded-2xl shadow-lg border border-blue-200"
                     />
-                  </a>
+                  </span>
                 </div>
               </div>
             </SwiperSlide>

@@ -63,7 +63,7 @@ export default function ParticleBackground() {
   }, [])
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="inset-0 pointer-events-none z-0 overflow-hidden">
       {/* Floating particles */}
       {particles.map(particle => (
         <div

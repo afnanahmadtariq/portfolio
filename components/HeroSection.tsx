@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { useState, useEffect } from "react"
+import ParticleBackground from "./ParticleBackground"
 
 export default function HeroSection() {
   const [currentRole, setCurrentRole] = useState('')
@@ -60,31 +61,32 @@ export default function HeroSection() {
 
   return (
     <>
-        {/* Hero Section */}
-        <section id="home" className="relative min-h-screen w-full flex items-center justify-center px-4 py-20 pt-32">
-          {/* Hero Content */}
-          <div className="max-w-2xl mx-auto text-center relative z-10">
-            <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 mx-auto mb-6 relative flex items-center justify-center shadow-lg rounded-full overflow-hidden">
-              <Image
-                src="/photo.png"
-                alt="Avatar"
-                width={512}
-                height={512}
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <h1 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-down">
-              Hello! I Am <span className="text-blue-500">Afnan Ahmad Tariq</span>
-            </h1>
-            <h2 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-up">
-              I&apos;m a <span className="text-purple-500">{currentRole}</span>
-              <span className="animate-blink text-blue-600">|</span> 
-            </h2>          
-            <p className="text-sm sm:text-base md:text-lg text-gray-500 mt-4 max-w-4xl mx-auto animate-fade-in-up">
-            Full Stack Developer passionate about building scalable web and mobile applications with modern technologies. Experienced in Next.js, Tailwind CSS, Node.js, MongoDB, Docker, and Azure. I create intuitive user experiences, integrate AI tools, and thrive in collaborative, cross-functional teams. Proven problem solver with a track record in coding competitions and hackathons. Open to new opportunities and challenges.
-            </p>
-          </div>
-        </section>  
+    {/* Hero Section */}
+    <section id="home" className="relative min-h-screen w-full flex items-center justify-center px-4 py-20 pt-32">
+        <ParticleBackground />
+        {/* Hero Content */}
+        <div className="max-w-2xl mx-auto text-center relative z-10">
+        <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 mx-auto mb-6 relative flex items-center justify-center shadow-lg rounded-full overflow-hidden">
+            <Image
+            src="/photo.png"
+            alt="Avatar"
+            width={512}
+            height={512}
+            className="object-cover w-full h-full"
+            />
+        </div>
+        <h1 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-down">
+            Hello! I Am <span className="text-blue-500">Afnan Ahmad Tariq</span>
+        </h1>
+        <h2 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-up">
+            I&apos;m a <span className="text-purple-500">{currentRole}</span>
+            <span className="animate-blink text-blue-600">|</span> 
+        </h2>          
+        <p className="text-sm sm:text-base md:text-lg text-gray-500 mt-4 max-w-4xl mx-auto animate-fade-in-up">
+        Full Stack Developer passionate about building scalable web and mobile applications with modern technologies. Experienced in Next.js, Tailwind CSS, Node.js, MongoDB, Docker, and Azure. I create intuitive user experiences, integrate AI tools, and thrive in collaborative, cross-functional teams. Proven problem solver with a track record in coding competitions and hackathons. Open to new opportunities and challenges.
+        </p>
+        </div>
+    </section> 
     </>
   )
 }

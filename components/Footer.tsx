@@ -1,15 +1,34 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 const Footer: React.FC = () => {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const [isInProjectsSection, setIsInProjectsSection] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const projectsSection = document.getElementById('projects');
+      if (projectsSection) {
+        const rect = projectsSection.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        // Check if projects section is visible in viewport
+        const isVisible = rect.top < windowHeight && rect.bottom > 0;
+        setIsInProjectsSection(isVisible);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Check initial state
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
       {/* Mobile Chat Button */}
       <button
         onClick={() => setIsContactFormOpen(true)}
-        className="fixed bottom-6 right-6 z-50 md:hidden bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300"
+        className={`fixed ${isInProjectsSection ? 'bottom-6 left-6' : 'bottom-6 right-6'} z-50 md:hidden bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300`}
         aria-label="Open contact form"
       >
         <svg 

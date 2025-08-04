@@ -196,7 +196,7 @@ export default function Skills() {
             {webSkills.map((group, idx) => {
               const angle = (360 / webSkills.length) * idx;
               const rad = (angle * Math.PI) / 180;
-              const r = 230;
+              const r = 270;
               const x = 288 + r * Math.cos(rad - Math.PI / 2);
               const y = 288 + r * Math.sin(rad - Math.PI / 2);
               const isSelected = idx === selectedCategoryIdx;
@@ -215,16 +215,16 @@ export default function Skills() {
                   aria-label={group.category}
                 >
                   {/* Category Icon */}
-                  {group.category === 'Languages' && <SiJavascript className="w-7 h-7" style={{ color: '#F7DF1E' }} />}
-                  {group.category === 'Frontend' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
-                  {group.category === 'Backend' && <SiNodedotjs className="w-7 h-7" style={{ color: '#339933' }} />}
-                  {group.category === 'Security & Auth' && <Shield className="w-7 h-7" style={{ color: '#FF6B6B' }} />}
-                  {group.category === 'Cloud' && <SiAmazon className="w-7 h-7" style={{ color: '#FF9900' }} />}
-                  {group.category === 'Databases' && <SiMongodb className="w-7 h-7" style={{ color: '#47A248' }} />}
-                  {group.category === 'DevOps' && <SiGit className="w-7 h-7" style={{ color: '#F05032' }} />}
-                  {group.category === 'Tools' && <SiVisualstudiocode className="w-7 h-7" style={{ color: '#007ACC' }} />}
-                  {group.category === 'Mobile App Development' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
-                  <span className={`text-xs font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-400'}`}>{group.category.split(' ')[0]}</span>
+                  {group.category === 'Languages' && <SiJavascript className="w-9 h-9" style={{ color: '#F7DF1E' }} />}
+                  {group.category === 'Frontend' && <SiReact className="w-9 h-9" style={{ color: '#61DAFB' }} />}
+                  {group.category === 'Backend' && <SiNodedotjs className="w-9 h-9" style={{ color: '#339933' }} />}
+                  {group.category === 'Security & Auth' && <Shield className="w-9 h-9" style={{ color: '#FF6B6B' }} />}
+                  {group.category === 'Cloud' && <SiAmazon className="w-9 h-9" style={{ color: '#FF9900' }} />}
+                  {group.category === 'Databases' && <SiMongodb className="w-9 h-9" style={{ color: '#47A248' }} />}
+                  {group.category === 'DevOps' && <SiGit className="w-9 h-9" style={{ color: '#F05032' }} />}
+                  {group.category === 'Tools' && <SiVisualstudiocode className="w-9 h-9" style={{ color: '#007ACC' }} />}
+                  {group.category === 'Mobile App Development' && <SiReact className="w-9 h-9" style={{ color: '#61DAFB' }} />}
+                  <span className={`text-base font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-400'}`}>{group.category.split(' ')[0]}</span>
                 </motion.button>
               );
             })}

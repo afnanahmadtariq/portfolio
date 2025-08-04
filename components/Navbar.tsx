@@ -10,10 +10,25 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10)
+      // Check if we're in a scroll container or window scroll
+      const scrollContainer = document.querySelector('.snap-y')
+      const scrollY = scrollContainer ? scrollContainer.scrollTop : window.scrollY
+      setIsScrolled(scrollY > 10)
+    }
+    
+    // Listen to both window scroll and scroll container
+    const scrollContainer = document.querySelector('.snap-y')
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll)
     }
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+    
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', handleScroll)
+      }
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   const handleMenuClick = (id: string) => {

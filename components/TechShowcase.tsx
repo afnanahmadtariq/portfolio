@@ -1,22 +1,55 @@
 import { SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, SiJavascript, SiFigma, SiVisualstudiocode, SiGit, SiPython, SiMongodb, SiNodedotjs, SiExpress } from 'react-icons/si'
 import Image from "next/image"
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export default function TechShowcase() {
-  const [positions, setPositions] = useState<{ left: string; top: string }[]>([]);
+  const [positions, setPositions] = useState<{ left: string; top: string; scale: number }[]>([]);
+  const sectionRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const newPositions = Array.from({ length: 12 }, (_, i) => ({
-      left: `${50 + 40 * Math.cos((2 * Math.PI * i) / 12)}%`,
-      top: `${50 + 40 * Math.sin((2 * Math.PI * i) / 12)}%`,
-    }));
-    setPositions(newPositions);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const newPositions = Array.from({ length: 12 }, (_, i) => ({
+            left: `${50 + 40 * Math.cos((2 * Math.PI * i) / 12)}%`,
+            top: `${50 + 40 * Math.sin((2 * Math.PI * i) / 12)}%`,
+            scale: 0, // Start with scale 0 for animation
+          }));
+          setPositions(newPositions);
+
+          // Animate outward one by one
+          newPositions.forEach((pos, i) => {
+            setTimeout(() => {
+              setPositions((prev) => {
+                const updated = [...prev];
+                updated[i] = { ...pos, scale: 1 }; // Set scale to 1 for animation
+                return updated;
+              });
+            }, i * 100); // Stagger animation by 100ms per icon
+          });
+        } else {
+          // Reset positions when the section exits the viewport
+          setPositions((prev) => prev.map((pos) => ({ ...pos, scale: 0 })));
+        }
+      },
+      { threshold: 0.1 } // Trigger when 10% of the section is visible
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
   
   return (
     <>
     {/* Tech Showcase */}
-      <section id='tech-showcase' className="container mx-auto px-4 py-20 text-center">
+      <section
+        id='tech-showcase'
+        ref={sectionRef}
+        className="container mx-auto px-4 py-20 text-center"
+      >
         <p className="text-xl mb-8 animate-fade-in-down">
           I&apos;m currently looking to join a <span className="text-blue-600">cross-functional</span> team
         </p>
@@ -43,7 +76,7 @@ export default function TechShowcase() {
                 style={{
                   left: positions[i]?.left || '50%',
                   top: positions[i]?.top || '50%',
-                  transform: 'translate(-50%, -50%)'
+                  transform: `translate(-50%, -50%) scale(${positions[i]?.scale || 0})`,
                 }}
               >
                 <Icon className="text-blue-600 w-4 h-4 lg:w-6 lg:h-6 animate-spin-reverse-slow" />

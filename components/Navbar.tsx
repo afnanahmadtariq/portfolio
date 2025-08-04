@@ -47,7 +47,7 @@ export default function Navbar() {
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex lg:flex gap-6">
             <Link href="/#home" className="hover:text-blue-600 text-gray-900 transition-colors">Home</Link>
-            <Link href="/#about" className="hover:text-blue-600 text-gray-900 transition-colors">About</Link>
+            <Link href="/#skills" className="hover:text-blue-600 text-gray-900 transition-colors">Skills</Link>
             <Link href="/#projects" className="hover:text-blue-600 text-gray-900 transition-colors">Projects</Link>
             <Link href="/#contact" className="hover:text-blue-600 text-gray-900 transition-colors">Contact</Link>
           </div>

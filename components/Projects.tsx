@@ -55,6 +55,8 @@ export default function Projects() {
   ]
 
   const [projectTitle, setProjectTitle] = useState('')
+  const [isBeginning, setIsBeginning] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
 
   // Refs for custom navigation buttons
   const prevRef = useRef(null);
@@ -76,8 +78,16 @@ export default function Projects() {
           spaceBetween={50}
           slidesPerView={1}
           className="h-full w-full"
-          onSlideChange={(swiper) => setProjectTitle(projects[swiper.activeIndex].title)}
-          onInit={(swiper) => setProjectTitle(projects[swiper.activeIndex].title)}
+          onSlideChange={(swiper) => {
+            setProjectTitle(projects[swiper.activeIndex].title);
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
+          onInit={(swiper) => {
+            setProjectTitle(projects[swiper.activeIndex].title);
+            setIsBeginning(swiper.isBeginning);
+            setIsEnd(swiper.isEnd);
+          }}
         >
           {projects.map((project, index) => (
             <SwiperSlide key={index} className="flex items-center justify-center h-full">
@@ -115,19 +125,23 @@ export default function Projects() {
           <div className="flex gap-4 justify-center">
             <button
               ref={prevRef}
-              className="custom-swiper-prev w-12 h-12 rounded-full bg-white/80 flex items-center justify-center border border-blue-200 hover:bg-white hover:border-2 hover:border-blue-500 transition"
+              className={`custom-swiper-prev w-12 h-12 rounded-full flex items-center justify-center border transition
+                ${isBeginning ? 'bg-gray-200 border-gray-300 cursor-not-allowed opacity-50' : 'bg-white/80 border-blue-200 hover:bg-white hover:border-2 hover:border-blue-500'}`}
               aria-label="Previous project"
               type="button"
+              disabled={isBeginning}
             >
-              <HiOutlineArrowSmallLeft size={32} color="#2563eb" />
+              <HiOutlineArrowSmallLeft size={32} color={isBeginning ? '#a3b3ff' : '#2563eb'} />
             </button>
             <button
               ref={nextRef}
-              className="custom-swiper-next w-12 h-12 rounded-full bg-white/80 flex items-center justify-center border border-blue-200 hover:bg-white hover:border-2 hover:border-blue-500 transition"
+              className={`custom-swiper-next w-12 h-12 rounded-full flex items-center justify-center border transition
+                ${isEnd ? 'bg-gray-200 border-gray-300 cursor-not-allowed opacity-50' : 'bg-white/80 border-blue-200 hover:bg-white hover:border-2 hover:border-blue-500'}`}
               aria-label="Next project"
               type="button"
+              disabled={isEnd}
             >
-              <HiOutlineArrowSmallRight size={32} color="#2563eb" />
+              <HiOutlineArrowSmallRight size={32} color={isEnd ? '#a3b3ff' : '#2563eb'} />
             </button>
           </div>
         </div>  

@@ -65,7 +65,7 @@ export default function Projects() {
     <section id="projects" className="w-full h-[calc(100vh-4rem)] bg-gradient-to-br from-white to-blue-100 flex items-center justify-center relative">
       <div className="w-full h-full flex items-center justify-center">
         {/* Top left fixed div */}
-        <div className="absolute z-10 top-0 left-0 w-[30%] h-[5rem] bg-white/25 border-b border-r border-blue-300 rounded-br-full flex items-center justify-center">
+        <div className="absolute z-10 top-0 left-0 w-[60%] sm:w-[30%] h-[4rem] sm:h-[5rem] bg-white/25 border-b border-r border-blue-300 rounded-br-full flex items-center justify-center">
           <h4 className="text-2xl font-bold text-blue-900">{projectTitle}</h4>
         </div>
         <Swiper
@@ -91,15 +91,15 @@ export default function Projects() {
         >
           {projects.map((project, index) => (
             <SwiperSlide key={index} className="flex items-center justify-center h-full">
-              <div className="flex flex-col md:flex-row items-center justify-between w-full h-full px-8 mx-auto">
+              <div className="flex flex-col md:flex-row items-center md:justify-between pt-14 sm:pt-20 md:pt-0 w-full h-full px-8 mx-auto">
                 {/* Info on left */}
-                <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:items-start text-left py-8 md:py-0">
-                  <h3 className="text-sm mb-2 text-blue-500 font-medium">{project.tech}</h3>
-                  <p className="text-base text-gray-700 mb-6">{project.description}</p>
-                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-block px-5 py-2 rounded-full bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition">Visit Site</a>
+                <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:items-start text-left py-4 sm:py-8 md:py-0">
+                  <h3 className="text-xs sm:text-sm mb-2 text-blue-500 font-medium">{project.tech}</h3>
+                  <p className="text-sm sm:text-base text-gray-700 mb-6">{project.description}</p>
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 sm:px-5 sm:py-2 rounded-full bg-blue-600 text-white text-sm sm:text-base font-normal sm:font-semibold shadow hover:bg-blue-700 transition">Visit Site</a>
                 </div>
                 {/* Image on right */}
-                <div className="relative w-full md:w-4/5 h-64 md:h-[35rem] flex items-center justify-center -mt-[5rem]">
+                <div className="relative w-full md:w-4/5 h-56 md:h-[35rem] flex items-center justify-center md:-mt-[5rem]">
                   <a
                     href={project.url}
                     target="_blank"
@@ -120,7 +120,7 @@ export default function Projects() {
           ))}
         </Swiper>
         {/* Bottom right fixed div */}
-        <div className="absolute z-10 bottom-0 right-0 w-[30%] h-[5rem] bg-white/25 border-t border-l border-blue-300 rounded-tl-full flex items-center justify-center">
+        <div className="absolute z-10 bottom-0 right-0 w-[60%] sm:w-[30%] h-[5rem] bg-white/25 border-t border-l border-blue-300 rounded-tl-full flex items-center justify-center">
           {/* Custom Swiper navigation arrows at bottom right with circular bg */}
           <div className="flex gap-4 justify-center">
             <button

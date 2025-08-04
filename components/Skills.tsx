@@ -163,6 +163,7 @@ export default function Skills() {
   useEffect(() => {
     const newRotation = getShortestRotation(prevIdxRef.current, selectedCategoryIdx, webSkills.length);
     setRotation(newRotation);
+    console.log(`Rotation updated: ${newRotation} degrees`);
     rotationRef.current = newRotation;
     prevIdxRef.current = selectedCategoryIdx;
   }, [selectedCategoryIdx, webSkills.length]);
@@ -200,15 +201,16 @@ export default function Skills() {
               const y = 288 + r * Math.sin(rad - Math.PI / 2);
               const isSelected = idx === selectedCategoryIdx;
               return (
-                <button
+                <motion.button
                   key={group.category}
-                  className={`absolute flex flex-col items-center justify-center transition-all duration-300 rounded-full border-2 shadow-lg bg-white/80 hover:bg-blue-100 ${isSelected ? 'border-blue-500 scale-110 z-20' : 'border-blue-200 scale-100 z-10'} w-14 h-14`}
+                  className={`absolute flex flex-col items-center justify-center rounded-2xl border-2 shadow-lg bg-white/80 hover:bg-blue-100 ${isSelected ? 'border-blue-500 scale-110 z-20' : 'border-blue-200 scale-100 z-10'} w-24 h-24`}
                   style={{
-                    left: x - 28,
-                    top: y - 28,
+                    left: x - 48,
+                    top: y - 48,
                     boxShadow: isSelected ? '0 0 0 4px #60A5FA33' : undefined,
-                    transform: `rotate(-${rotation}deg)`
                   }}
+                  animate={{ rotate: rotation * -1 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   onClick={() => setSelectedCategoryIdx(idx)}
                   aria-label={group.category}
                 >
@@ -223,7 +225,7 @@ export default function Skills() {
                   {group.category === 'Tools' && <SiVisualstudiocode className="w-7 h-7" style={{ color: '#007ACC' }} />}
                   {group.category === 'Mobile App Development' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
                   <span className={`text-xs font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-400'}`}>{group.category.split(' ')[0]}</span>
-                </button>
+                </motion.button>
               );
             })}
           </motion.div>

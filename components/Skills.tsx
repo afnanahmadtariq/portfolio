@@ -22,6 +22,15 @@ export default function Skills() {
     mode: "free",
   });
 
+  // Auto-rotate slider
+  useEffect(() => {
+    if (!slider || !slider.current) return;
+    const interval = setInterval(() => {
+      slider.current?.next();
+    }, 2000); // 2 seconds per slide
+    return () => clearInterval(interval);
+  }, [slider]);
+
   const webSkills = [
     {
       category: 'Languages',

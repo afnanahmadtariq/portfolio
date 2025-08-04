@@ -74,7 +74,7 @@ export default function Projects() {
             prevEl: prevRef.current,
             nextEl: nextRef.current,
           }}
-          pagination={{ clickable: true }}
+          pagination={typeof window !== 'undefined' && window.innerWidth < 640 ? false : { clickable: true }}
           spaceBetween={50}
           slidesPerView={1}
           className="h-full w-full"

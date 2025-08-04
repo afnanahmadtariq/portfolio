@@ -17,10 +17,20 @@ const Footer: React.FC = () => {
       }
     };
 
+    // Listen to both window scroll and scroll container
+    const scrollContainer = document.querySelector('.snap-y');
+    if (scrollContainer) {
+      scrollContainer.addEventListener('scroll', handleScroll);
+    }
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Check initial state
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('scroll', handleScroll);
+      }
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (

@@ -14,6 +14,7 @@
     "@tsparticles/slim": "^3.8.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "keen-slider": "^6.8.6",
     "lucide-react": "^0.462.0",
     "next": "^15.0.3",
     "react": "19.0.0-rc-66855b96-20241106",

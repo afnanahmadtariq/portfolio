@@ -8,11 +8,19 @@ import {
   SiGithub, SiIntellijidea
 } from 'react-icons/si'
 import {Shield, Lock, Key, Users, Coffee } from 'lucide-react'
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
 
 
 import { useState, useRef, useEffect } from 'react';
 
 export default function Skills() {
+  // Keen slider for mobile
+  const [sliderRef, slider] = useKeenSlider<HTMLDivElement>({
+    loop: true,
+    slides: { perView: 3, spacing: 8 },
+    mode: "free",
+  });
 
   const webSkills = [
     {
@@ -179,32 +187,35 @@ export default function Skills() {
             })}
           </div>
         </div>
-        {/* Mobile Category Slider */}
-        <div className="flex md:hidden w-full h-12 overflow-x-auto py-4 px-2 gap-3 scrollbar-hide mb-2">
-          {webSkills.map((group, idx) => {
-            const isSelected = idx === selectedCategoryIdx;
-            return (
-              <button
-                key={group.category}
-                className={`flex flex-col items-center justify-center rounded-full border-2 shadow bg-white/80 hover:bg-blue-100 transition-all duration-200 min-w-[72px] w-16 h-16 mx-1 ${isSelected ? 'border-blue-500 scale-110' : 'border-blue-200 scale-100'}`}
-                style={{ boxShadow: isSelected ? '0 0 0 4px #60A5FA33' : undefined }}
-                onClick={() => setSelectedCategoryIdx(idx)}
-                aria-label={group.category}
-              >
-                {/* Category Icon */}
-                {group.category === 'Languages' && <SiJavascript className="w-7 h-7" style={{ color: '#F7DF1E' }} />}
-                {group.category === 'Frontend' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
-                {group.category === 'Backend' && <SiNodedotjs className="w-7 h-7" style={{ color: '#339933' }} />}
-                {group.category === 'Security & Auth' && <Shield className="w-7 h-7" style={{ color: '#FF6B6B' }} />}
-                {group.category === 'Cloud' && <SiAmazon className="w-7 h-7" style={{ color: '#FF9900' }} />}
-                {group.category === 'Databases' && <SiMongodb className="w-7 h-7" style={{ color: '#47A248' }} />}
-                {group.category === 'DevOps' && <SiGit className="w-7 h-7" style={{ color: '#F05032' }} />}
-                {group.category === 'Tools' && <SiVisualstudiocode className="w-7 h-7" style={{ color: '#007ACC' }} />}
-                {group.category === 'Mobile App Development' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
-                <span className={`text-xs font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-500'}`}>{group.category.split(' ')[0]}</span>
-              </button>
-            );
-          })}
+        {/* Mobile Category Slider - keen-slider infinite */}
+        <div className="md:hidden w-full py-4 px-2 mb-2">
+          <div ref={sliderRef} className="keen-slider">
+            {webSkills.map((group, idx) => {
+              const isSelected = idx === selectedCategoryIdx;
+              return (
+                <div className="keen-slider__slide" key={group.category}>
+                  <button
+                    className={`flex flex-col items-center justify-center rounded-full border-2 shadow bg-white/80 hover:bg-blue-100 transition-all duration-200 min-w-[72px] w-16 h-16 mx-1 ${isSelected ? 'border-blue-500 scale-110' : 'border-blue-200 scale-100'}`}
+                    style={{ boxShadow: isSelected ? '0 0 0 4px #60A5FA33' : undefined }}
+                    onClick={() => setSelectedCategoryIdx(idx)}
+                    aria-label={group.category}
+                  >
+                    {/* Category Icon */}
+                    {group.category === 'Languages' && <SiJavascript className="w-7 h-7" style={{ color: '#F7DF1E' }} />}
+                    {group.category === 'Frontend' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
+                    {group.category === 'Backend' && <SiNodedotjs className="w-7 h-7" style={{ color: '#339933' }} />}
+                    {group.category === 'Security & Auth' && <Shield className="w-7 h-7" style={{ color: '#FF6B6B' }} />}
+                    {group.category === 'Cloud' && <SiAmazon className="w-7 h-7" style={{ color: '#FF9900' }} />}
+                    {group.category === 'Databases' && <SiMongodb className="w-7 h-7" style={{ color: '#47A248' }} />}
+                    {group.category === 'DevOps' && <SiGit className="w-7 h-7" style={{ color: '#F05032' }} />}
+                    {group.category === 'Tools' && <SiVisualstudiocode className="w-7 h-7" style={{ color: '#007ACC' }} />}
+                    {group.category === 'Mobile App Development' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
+                    <span className={`text-xs font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-500'}`}>{group.category.split(' ')[0]}</span>
+                  </button>
+                </div>
+              );
+            })}
+          </div>
         </div>
         {/* Skills Display - Modern Grid Layout */}
         <div className="md:flex-1 flex flex-col justify-center items-center px-4 py-8">

@@ -12,16 +12,18 @@ import Projects from '@/components/Projects'
 export default function Home() {
   useEffect(() => {
     const sections = document.querySelectorAll('section');
+    const navbarHeight = document.querySelector('nav')?.offsetHeight || 0;
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const offsetTop = entry.target.getBoundingClientRect().top + window.scrollY - navbarHeight;
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
           }
         });
       },
-      { threshold: 0.3 } // Adjust threshold as needed
+      { threshold: 0.1 }
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -32,13 +34,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-blue-100 text-gray-900 relative">
+    <>
       <Navbar />
       <HeroSection />
       <Skills />
       <TechShowcase />
       <Projects />
       <Footer />
-    </div>
+    </>
   )
 }

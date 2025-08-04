@@ -4,7 +4,6 @@ import ParticleBackground from "./ParticleBackground"
 
 export default function HeroSection() {
   const [currentRole, setCurrentRole] = useState('')
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const roles = ['Full Stack Developer', 'UI/UX Designer', 'Software Engineer', 'Problem Solver', 'Cyber Enthusiast', 'AI Enthusiast']
   const [roleIndex, setRoleIndex] = useState(0)
   const [typing, setTyping] = useState(true)
@@ -16,38 +15,32 @@ export default function HeroSection() {
 
     const currentString = roles[roleIndex]
 
-    // Function to type out the current role
     const typeRole = () => {
       if (typing) {
-        // Typing effect
         typingTimeout = setInterval(() => {
-          // Add one character at a time until the full word is typed
           if (charIndex < currentString.length) {
             setCurrentRole((prev) => prev + currentString[charIndex])
             setCharIndex((prev) => prev + 1)
           } else {
-            // After fully typing the role, stop typing and start deleting
             clearInterval(typingTimeout)
             setTimeout(() => {
               setTyping(false)
-            }, 1000) // Delay before starting to delete
+            }, 1000)
           }
-        }, 150) // Speed of typing effect
+        }, 150)
       } else {
-        // Deleting effect
         typingTimeout = setInterval(() => {
           setCurrentRole((prev) => prev.slice(0, prev.length - 1))
           
           if (currentRole.length === 0) {
             clearInterval(typingTimeout)
             setTimeout(() => {
-              // After deleting, switch to next role
               setRoleIndex((prev) => (prev + 1) % roles.length)
-              setTyping(true) // Start typing the next role
+              setTyping(true)
               setCharIndex(0)
-            }, 1000) // Delay before switching role
+            }, 1000)
           }
-        }, 100) // Speed of deleting effect
+        }, 100)
       }
     }
 
@@ -60,11 +53,8 @@ export default function HeroSection() {
   }, [roleIndex, typing, charIndex, currentRole, roles])
 
   return (
-    <>
-    {/* Hero Section */}
-    <section id="home" className="relative min-h-screen w-full flex items-center justify-center px-4 py-20 pt-32">
+    <section id="home" className="relative min-h-screen bg-gradient-to-br from-white to-blue-100 w-full flex items-center justify-center px-4 py-20 pt-32">
         <ParticleBackground />
-        {/* Hero Content */}
         <div className="max-w-2xl mx-auto text-center relative z-10">
         <div className="w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 mx-auto mb-6 relative flex items-center justify-center shadow-lg rounded-full overflow-hidden">
             <Image
@@ -87,6 +77,5 @@ export default function HeroSection() {
         </p>
         </div>
     </section> 
-    </>
   )
 }

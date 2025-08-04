@@ -48,7 +48,7 @@ export default function TechShowcase() {
       <section
         id='tech-showcase'
         ref={sectionRef}
-        className="container mx-auto px-4 py-20 text-center"
+        className="container mx-auto px-4 py-20 h-[calc(100vh-4rem)] text-center bg-red-700"
       >
         <p className="text-xl mb-8 animate-fade-in-down">
           I&apos;m currently looking to join a <span className="text-blue-600">cross-functional</span> team

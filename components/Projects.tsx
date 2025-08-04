@@ -1,5 +1,9 @@
-import { Github, Globe, ExternalLink } from "lucide-react"
+import { Navigation, Pagination } from 'swiper/modules';
 import Image from "next/image"
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default function Projects() {
   const projects = [
@@ -49,80 +53,43 @@ export default function Projects() {
   return (
     <>
     {/* Projects */}
-      <section id="projects" className="container mx-auto px-4 py-20">
-        <h2 className="text-2xl font-bold mb-8 animate-fade-in-down">Featured Projects</h2>
-        <div className="space-y-20">
+      <section id="projects" className="w-full h-[calc(100vh-4rem)] bg-black">
+        <Swiper
+          modules={[Navigation, Pagination]}
+          navigation
+          pagination={{ clickable: true }}
+          spaceBetween={50}
+          slidesPerView={1}
+          className="h-full"
+        >
           {projects.map((project, index) => (
-            <div key={index} className="grid md:grid-cols-2 gap-8 items-center group">
-                <div className={`order-2 ${index % 2 === 0 ? 'md:order-none' : ''}`}>
-                  <h3 className="text-sm text-blue-600 mb-2 animate-fade-in-left">{project.tech}</h3>
-                  <h4 className="text-xl font-bold mb-4 animate-fade-in-left group-hover:text-blue-600 transition-colors duration-300">{project.title}</h4>
-                  <p className="text-gray-500 mb-4 animate-fade-in-left">{project.description}</p>
-                    {/* CTA Button - always visible on mobile, hover effect on desktop */}
-                  <div className="opacity-100 md:opacity-0 md:group-hover:opacity-100 transform translate-y-0 md:translate-y-4 md:group-hover:translate-y-0 transition-all duration-500 animate-fade-in-left">
-                    <a 
-                      href={project.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
-                    >
-                      {project.url.includes('github.com') ? (
-                        <>
-                          <Github className="w-4 h-4" />
-                          View Code
-                        </>
-                      ) : (
-                        <>
-                          <Globe className="w-4 h-4" />
-                          Visit Site
-                        </>
-                      )}
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  </div>
-                </div>
-                  {/* Enhanced project card */}
-                <div className="project-card bg-white/60 backdrop-blur-md border border-gray-200 rounded-3xl p-4 shadow-lg relative overflow-hidden">
-                  {/* Hover overlay with gradient - desktop only */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-purple-500/0 md:group-hover:from-blue-500/10 md:group-hover:to-purple-500/10 transition-all duration-500 rounded-3xl"></div>
-                  
-                  {/* External link indicator - top right - always visible on mobile */}
-                  <div className="project-indicator-right absolute top-6 right-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 transform translate-x-0 md:translate-x-2 md:group-hover:translate-x-0 z-10">
-                    <div className="project-icon bg-blue-600 text-white p-2 rounded-full shadow-lg">
-                      {project.url.includes('github.com') ? (
-                        <Github className="w-4 h-4" />
-                      ) : (
-                        <Globe className="w-4 h-4" />
-                      )}
-                    </div>
-                  </div>                    {/* Click to view indicator - bottom left - always visible on mobile */}
-                  <div className="project-indicator-bottom absolute bottom-6 left-6 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-all duration-300 transform translate-y-0 md:translate-y-2 md:group-hover:translate-y-0 z-10">
-                    <div className="bg-white/90 backdrop-blur-sm border border-gray-200 px-3 py-1 rounded-full shadow-lg flex items-center gap-2">
-                      <ExternalLink className="w-3 h-3 text-blue-600" />
-                      <span className="text-xs font-medium text-gray-700">
-                        {project.url.includes('github.com') ? 'View Code' : 'Visit Site'}
-                      </span>
-                    </div>
-                  </div>
-
-                  <a 
-                    href={project.url} 
-                    target="_blank" 
+            <SwiperSlide key={index} className="flex items-center justify-center h-full">
+              <div className="flex flex-col md:flex-row items-center justify-center w-full h-full px-8">
+                <div className="relative w-full md:w-2/3 h-2/3 md:h-full">
+                  <a
+                    href={project.url}
+                    target="_blank"
                     rel="noopener noreferrer"
-                    className="block relative z-0"
+                    className="block w-full h-full"
                   >
                     <Image
-                      src={project.image} 
+                      src={project.image}
                       alt={`${project.title} screenshot`}
-                      width={800}
-                      height={400}
-                      className="project-image rounded-2xl transition-all duration-500 overflow-hidden"
+                      layout="fill"
+                      objectFit="contain"
+                      className="rounded-lg"
                     />
                   </a>
                 </div>
-            </div>
+                <div className="mt-8 md:mt-0 md:ml-8 w-full md:w-1/3 text-center md:text-left">
+                  <h3 className="text-sm mb-2 text-gray-500">{project.tech}</h3>
+                  <h4 className="text-xl font-bold mb-4 text-gray-800">{project.title}</h4>
+                  <p className="text-sm text-gray-600">{project.description}</p>
+                </div>
+              </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
       </section>
     </>
   )

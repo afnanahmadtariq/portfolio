@@ -361,8 +361,6 @@ body {
   }
 }
 
-/* Enhanced Project Card Hover Effects - Removed problematic scaling animations */
-
 /* Keep image zoom isolated and contained */
 .project-image {
   transition: transform 0.3s ease;
@@ -581,6 +579,28 @@ body {
   /* Remove any remaining hover transitions on mobile */
   * {
     -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Underline animation */
+  .underline-animation {
+    position: relative;
+    text-decoration: none;
+  }
+  .underline-animation::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background: #000000;
+    border-radius: 1px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  .underline-animation:hover::after {
+    transform: scaleX(1);
   }
 }
 

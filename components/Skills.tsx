@@ -13,6 +13,7 @@ import { useKeenSlider } from "keen-slider/react";
 
 
 import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Skills() {
   // Keen slider for mobile
@@ -142,23 +143,54 @@ export default function Skills() {
     };
   }, [webSkills.length]);
 
+  // Track previous index for shortest rotation
+  const prevIdxRef = useRef(selectedCategoryIdx);
+  const rotationRef = useRef(((-selectedCategoryIdx * (360 / webSkills.length)) + 90));
+
+  // Calculate shortest rotation angle
+  function getShortestRotation(prevIdx: number, newIdx: number, total: number) {
+    const prevAngle = (-prevIdx * (360 / total)) + 90;
+    const newAngle = (-newIdx * (360 / total)) + 90;
+    let diff = newAngle - prevAngle;
+    // Wrap around for shortest path
+    if (diff > 180) diff -= 360;
+    if (diff < -180) diff += 360;
+    return rotationRef.current + diff;
+  }
+
+  // Compute rotation for framer-motion
+  const [rotation, setRotation] = useState(((-selectedCategoryIdx * (360 / webSkills.length)) + 90));
+  useEffect(() => {
+    const newRotation = getShortestRotation(prevIdxRef.current, selectedCategoryIdx, webSkills.length);
+    setRotation(newRotation);
+    rotationRef.current = newRotation;
+    prevIdxRef.current = selectedCategoryIdx;
+  }, [selectedCategoryIdx, webSkills.length]);
+
   return (
     <section id="skills" className="container bg-gradient-to-br from-white to-blue-100 h-[calc(100vh-4rem)] w-full flex items-center">
       <div className="flex flex-col md:flex-row w-full h-full">
         {/* Circular Category Slider - half visible, rotates */}
         <div className="relative hidden md:flex items-center justify-center w-[18rem] h-full">
-          <div
+          <motion.div
             ref={circleRef}
-            className="absolute w-[36rem] h-[36rem] -left-[22rem] flex items-center justify-center transition-all duration-300"
+            className="absolute w-[36rem] h-[36rem] -left-[22rem] flex items-center justify-center"
             style={{
               borderRadius: '50%',
               background: 'rgba(255,255,255,0.7)',
               boxShadow: '0 4px 32px #60A5FA22',
               border: '2px solid #60A5FA33',
               overflow: 'visible',
-              transform: `rotate(${(-selectedCategoryIdx * (360 / webSkills.length)) + 90}deg)`
             }}
             tabIndex={0}
+            animate={{
+              rotate: rotation
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 300,
+              damping: 30
+            }}
           >
             {webSkills.map((group, idx) => {
               const angle = (360 / webSkills.length) * idx;
@@ -175,7 +207,7 @@ export default function Skills() {
                     left: x - 28,
                     top: y - 28,
                     boxShadow: isSelected ? '0 0 0 4px #60A5FA33' : undefined,
-                    transform: `rotate(${selectedCategoryIdx * (360 / webSkills.length) - 90}deg)`
+                    transform: `rotate(-${rotation}deg)`
                   }}
                   onClick={() => setSelectedCategoryIdx(idx)}
                   aria-label={group.category}
@@ -194,7 +226,7 @@ export default function Skills() {
                 </button>
               );
             })}
-          </div>
+          </motion.div>
         </div>
         {/* Mobile Category Slider - keen-slider infinite */}
         <div className="md:hidden w-full py-4 px-2 mb-2 bg-white">

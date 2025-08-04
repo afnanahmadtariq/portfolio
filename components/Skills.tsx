@@ -91,7 +91,7 @@ export default function Skills() {
   return (
     <>
     {/* Skills Section */}
-      <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-12 sm:py-16 lg:py-24">
+      <section id="skills" className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-12 sm:py-16 lg:py-24">
         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-8 sm:mb-12 lg:mb-16 animate-fade-in-down text-center">Skills</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-8 xl:gap-6 2xl:gap-8">            {webSkills.map((group) => (
             <div key={group.category} className="mb-4 sm:mb-6 lg:mb-8">

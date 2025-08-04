@@ -10,6 +10,8 @@ import {
 import {Shield, Lock, Key, Users, Coffee } from 'lucide-react'
 
 
+import { useState, useRef, useEffect } from 'react';
+
 export default function Skills() {
   const webSkills = [
     {
@@ -85,29 +87,119 @@ export default function Skills() {
         { name: 'Figma', icon: SiFigma, level: 'Advanced' },
         { name: 'IntelliJ IDEA', icon: SiIntellijidea, level: 'Intermediate' },
       ]
+    },
+    {
+      category: 'Mobile App Development',
+      skills: [
+        { name: 'React Native', icon: SiReact, level: 'Intermediate' },
+        { name: 'Flutter', icon: SiFigma, level: 'Beginner' },
+        { name: 'Expo', icon: SiReact, level: 'Beginner' },
+        { name: 'Android Studio', icon: SiVisualstudiocode, level: 'Beginner' },
+      ]
     }
   ];
+
+
+  const [selectedCategoryIdx, setSelectedCategoryIdx] = useState(0);
+  const selectedGroup = webSkills[selectedCategoryIdx];
+
+  // For mouse wheel support
+  const circleRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (e.deltaY > 0) {
+        setSelectedCategoryIdx((prev) => (prev + 1) % webSkills.length);
+      } else if (e.deltaY < 0) {
+        setSelectedCategoryIdx((prev) => (prev - 1 + webSkills.length) % webSkills.length);
+      }
+    };
+    const el = circleRef.current;
+    if (el) {
+      el.addEventListener('wheel', handleWheel, { passive: false });
+    }
+    return () => {
+      if (el) {
+        el.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [webSkills.length]);
+
   return (
-    <section id="skills" className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 py-12 sm:py-16 lg:py-24 bg-pink-500">
-      <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-8 sm:mb-12 lg:mb-16 animate-fade-in-down text-center">Skills</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-8 xl:gap-6 2xl:gap-8">            
-        {webSkills.map((group) => (
-          <div key={group.category} className="mb-4 sm:mb-6 lg:mb-8">
-            <div className="flex items-center gap-3 mb-4 sm:mb-6 lg:mb-6 justify-center sm:justify-start lg:justify-center xl:justify-start">
-              <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 xl:w-12 xl:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-blue-100 shadow-lg border border-blue-200/50">
-                {group.category === 'Languages' && <SiJavascript className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" style={{ color: '#F7DF1E' }} />}
-                {group.category === 'Frontend' && <SiReact className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" style={{ color: '#61DAFB' }} />}
-                {group.category === 'Backend' && <SiNodedotjs className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" style={{ color: '#339933' }} />}
-                {group.category === 'Security & Auth' && <Shield className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" style={{ color: '#FF6B6B' }} />}
-                {group.category === 'Cloud' && <SiAmazon className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" style={{ color: '#FF9900' }} />}
-                {group.category === 'Databases' && <SiMongodb className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" style={{ color: '#47A248' }} />}
-                {group.category === 'DevOps' && <SiGit className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" style={{ color: '#F05032' }} />}
-                {group.category === 'Tools' && <SiVisualstudiocode className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 xl:w-6 xl:h-6" style={{ color: '#007ACC' }} />}
+    <section id="skills" className="container bg-pink-500 h-[calc(100vh-4rem)] w-full flex items-center">
+      <div className="flex flex-row w-full h-full">
+        {/* Circular Category Slider - half visible, rotates */}
+        <div className="relative flex items-center justify-center w-[18rem] h-full">
+          <div
+            ref={circleRef}
+            className="absolute w-[36rem] h-[36rem] -left-[22rem] flex items-center justify-center transition-all duration-300 "
+            style={{
+              borderRadius: '50%',
+              background: 'rgba(255,255,255,0.7)',
+              boxShadow: '0 4px 32px #60A5FA22',
+              border: '2px solid #60A5FA33',
+              overflow: 'visible',
+              transform: `rotate(${(-selectedCategoryIdx * (360 / webSkills.length)) + 90}deg)`
+            }}
+            tabIndex={0}
+          >
+            {webSkills.map((group, idx) => {
+              // Calculate angle for each category
+              const angle = (360 / webSkills.length) * idx;
+              // Position on circle
+              const rad = (angle * Math.PI) / 180;
+              const r = 230;
+              const x = 288 + r * Math.cos(rad - Math.PI / 2);
+              const y = 288 + r * Math.sin(rad - Math.PI / 2);
+              const isSelected = idx === selectedCategoryIdx;
+              return (
+                <button
+                  key={group.category}
+                  className={`absolute flex flex-col items-center justify-center rounded-full border-2 shadow-lg bg-white/80 hover:bg-blue-100 ${isSelected ? 'border-blue-500 scale-110 z-20' : 'border-blue-200 scale-100 z-10'} w-14 h-14`}
+                  style={{
+                    left: x - 28,
+                    top: y - 28,
+                    boxShadow: isSelected ? '0 0 0 4px #60A5FA33' : undefined,
+                    transform: `rotate(${selectedCategoryIdx * (360 / webSkills.length) - 90}deg)`
+                  }}
+                  onClick={() => setSelectedCategoryIdx(idx)}
+                  aria-label={group.category}
+                >
+                  {/* Category Icon */}
+                  {group.category === 'Languages' && <SiJavascript className="w-7 h-7" style={{ color: '#F7DF1E' }} />}
+                  {group.category === 'Frontend' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
+                  {group.category === 'Backend' && <SiNodedotjs className="w-7 h-7" style={{ color: '#339933' }} />}
+                  {group.category === 'Security & Auth' && <Shield className="w-7 h-7" style={{ color: '#FF6B6B' }} />}
+                  {group.category === 'Cloud' && <SiAmazon className="w-7 h-7" style={{ color: '#FF9900' }} />}
+                  {group.category === 'Databases' && <SiMongodb className="w-7 h-7" style={{ color: '#47A248' }} />}
+                  {group.category === 'DevOps' && <SiGit className="w-7 h-7" style={{ color: '#F05032' }} />}
+                  {group.category === 'Tools' && <SiVisualstudiocode className="w-7 h-7" style={{ color: '#007ACC' }} />}
+                  {group.category === 'Mobile App Development' && <SiReact className="w-7 h-7" style={{ color: '#61DAFB' }} />}
+                  <span className={`text-xs font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-500'}`}>{group.category.split(' ')[0]}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+        {/* Skills Display */}
+        <div className="flex-1 flex flex-col justify-center">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-8 sm:mb-12 lg:mb-16 animate-fade-in-down text-center">Skills</h2>
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-3 mb-6 justify-center">
+              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-blue-50 to-blue-100 shadow-lg border border-blue-200/50">
+                {selectedGroup.category === 'Languages' && <SiJavascript className="w-6 h-6" style={{ color: '#F7DF1E' }} />}
+                {selectedGroup.category === 'Frontend' && <SiReact className="w-6 h-6" style={{ color: '#61DAFB' }} />}
+                {selectedGroup.category === 'Backend' && <SiNodedotjs className="w-6 h-6" style={{ color: '#339933' }} />}
+                {selectedGroup.category === 'Security & Auth' && <Shield className="w-6 h-6" style={{ color: '#FF6B6B' }} />}
+                {selectedGroup.category === 'Cloud' && <SiAmazon className="w-6 h-6" style={{ color: '#FF9900' }} />}
+                {selectedGroup.category === 'Databases' && <SiMongodb className="w-6 h-6" style={{ color: '#47A248' }} />}
+                {selectedGroup.category === 'DevOps' && <SiGit className="w-6 h-6" style={{ color: '#F05032' }} />}
+                {selectedGroup.category === 'Tools' && <SiVisualstudiocode className="w-6 h-6" style={{ color: '#007ACC' }} />}
               </div>
-              <h3 className="text-base sm:text-lg lg:text-xl xl:text-lg 2xl:text-xl font-bold text-blue-700">{group.category}</h3>
+              <h3 className="text-xl font-bold text-blue-700">{selectedGroup.category}</h3>
             </div>
-            <div className="skills-grid grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 gap-2 sm:gap-3 lg:gap-4 xl:gap-3 2xl:gap-4">
-              {group.skills.map((skill, index) => {
+            <div className="skills-grid grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 gap-4 w-full max-w-2xl mx-auto">
+              {selectedGroup.skills.map((skill, index) => {
                 let iconColor = '#60A5FA'; // default blue
                 // Languages
                 if (skill.name === 'JavaScript') iconColor = '#F7DF1E';
@@ -158,7 +250,6 @@ export default function Skills() {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-blue-50/0 to-blue-100/0 group-hover:from-blue-50/50 group-hover:to-blue-100/30 transition-all duration-500 rounded-xl"></div>
-                    
                     <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 xl:w-10 xl:h-10 2xl:w-12 2xl:h-12 flex items-center justify-center mb-1 sm:mb-2 lg:mb-3 xl:mb-2 2xl:mb-3 relative z-10 group-hover:scale-110 transition-transform duration-300">
                       <skill.icon className="w-6 h-6 sm:w-8 sm:h-8 lg:w-10 lg:h-10 xl:w-8 xl:h-8 2xl:w-10 2xl:h-10" color={iconColor} />
                     </div>
@@ -186,8 +277,8 @@ export default function Skills() {
               })}
             </div>
           </div>
-        ))}
+        </div>
       </div>
     </section>
-  )
+  );
 }

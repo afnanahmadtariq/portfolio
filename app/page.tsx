@@ -361,7 +361,7 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
                     transform: 'translate(-50%, -50%)'
                   }}
                 >
-                  <Icon className="w-4 h-4 lg:w-6 lg:h-6 animate-spin-reverse-slow" />
+                  <Icon className="text-blue-600 w-4 h-4 lg:w-6 lg:h-6 animate-spin-reverse-slow" />
                 </div>
               ))}
             </div>

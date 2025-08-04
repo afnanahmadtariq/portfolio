@@ -1,8 +1,95 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 const Footer: React.FC = () => {
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+
   return (
+    <>
+      {/* Mobile Chat Button */}
+      <button
+        onClick={() => setIsContactFormOpen(true)}
+        className="fixed bottom-6 right-6 z-50 md:hidden bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg hover:scale-110 transition-all duration-300"
+        aria-label="Open contact form"
+      >
+        <svg 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-6 h-6"
+        >
+          <path 
+            d="M21 15C21 15.5304 20.7893 16.0391 20.4142 16.4142C20.0391 16.7893 19.5304 17 19 17H7L3 21V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V15Z" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {/* Contact Form Popup */}
+      {isContactFormOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
+          <div className="bg-white/95 backdrop-blur-lg border border-blue-200 rounded-2xl shadow-2xl w-full max-w-md relative">
+            <button
+              onClick={() => setIsContactFormOpen(false)}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors"
+              aria-label="Close contact form"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            
+            <form className="p-6 flex flex-col gap-4">
+              <h3 className="text-xl font-semibold mb-2 text-blue-700">Get in Touch</h3>
+              <div className="mb-2">
+                <label htmlFor="popup-name" className="block text-sm font-medium text-blue-700 mb-1">Name</label>
+                <input
+                  type="text"
+                  id="popup-name"
+                  name="name"
+                  className="w-full px-4 py-2 rounded-full border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition"
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div className="mb-2">
+                <label htmlFor="popup-email" className="block text-sm font-medium text-blue-700 mb-1">Email</label>
+                <input
+                  type="email"
+                  id="popup-email"
+                  name="email"
+                  className="w-full px-4 py-2 rounded-full border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition"
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+              <div className="mb-2">
+                <label htmlFor="popup-message" className="block text-sm font-medium text-blue-700 mb-1">Message</label>
+                <textarea
+                  id="popup-message"
+                  name="message"
+                  rows={4}
+                  className="w-full px-4 py-2 rounded-2xl border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition resize-none"
+                  placeholder="Your Message"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 px-4 rounded-full font-semibold shadow-md hover:scale-[1.03] hover:from-blue-600 hover:to-blue-800 transition"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
     <footer
       id="contact"
       className="relative bottom-0 left-0 bg-gradient-to-br from-white/80 to-blue-100/80 backdrop-blur-lg text-gray-900 border-t border-gray-200 shadow-lg h-[calc(100vh-4rem)] flex flex-col justify-between overflow-hidden"
@@ -34,7 +121,7 @@ const Footer: React.FC = () => {
             </div>
           </section>
           
-          <section>
+          <section className='mt-24'>
             <div className="flex gap-2 items-center justify-center mb-2">
               <span className="text-blue-600 animate-blink">●</span>
               <span className="text-xs text-gray-500">Coded with Next.js & Tailwind CSS</span>
@@ -44,7 +131,7 @@ const Footer: React.FC = () => {
             </p>
           </section>
         </div>
-        <div className="flex flex-col items-center gap-8 animate-fade-in-up">
+        <div className="hidden sm:flex flex-col items-center gap-8 animate-fade-in-up">
           <form className="w-full max-w-md lg:w-[50rem] bg-white/60 backdrop-blur-lg border border-blue-200 rounded-2xl shadow-xl p-8 flex flex-col gap-4">
             <h3 className="text-xl font-semibold mb-2 text-blue-700">Get in Touch</h3>
             <div className="mb-2">
@@ -90,6 +177,7 @@ const Footer: React.FC = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

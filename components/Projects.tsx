@@ -66,10 +66,13 @@ export default function Projects() {
           {projects.map((project, index) => (
             <SwiperSlide key={index} className="flex items-center justify-center h-full">
               <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full h-full px-8 max-w-5xl mx-auto">
+                {/* Top left fixed div */}
+                <div className="absolute top-0 left-0 w-[40%] h-[5rem] bg-white/80 border border-blue-200 rounded-br-full flex items-center justify-center">
+                  <h4 className="text-2xl font-bold text-blue-900">{project.title}</h4>
+                </div>
                 {/* Info on left */}
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:items-start text-left py-8 md:py-0">
                   <h3 className="text-sm mb-2 text-blue-500 font-medium">{project.tech}</h3>
-                  <h4 className="text-2xl font-bold mb-4 text-blue-900">{project.title}</h4>
                   <p className="text-base text-gray-700 mb-6">{project.description}</p>
                   <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-block px-5 py-2 rounded-full bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition">Visit Site</a>
                 </div>
@@ -94,23 +97,26 @@ export default function Projects() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
-      {/* Custom Swiper navigation arrows at bottom right with circular bg */}
-      <div className="absolute bottom-8 right-8 flex gap-4 z-50">
-        <button
-          className="swiper-button-prev w-12 h-12 rounded-full bg-white/80 shadow-lg flex items-center justify-center border border-blue-200 hover:bg-blue-100 transition"
-          aria-label="Previous project"
-          type="button"
-        >
-          <svg width="24" height="24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button
-          className="swiper-button-next w-12 h-12 rounded-full bg-white/80 shadow-lg flex items-center justify-center border border-blue-200 hover:bg-blue-100 transition"
-          aria-label="Next project"
-          type="button"
-        >
-          <svg width="24" height="24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
-        </button>
+        {/* Bottom right fixed div */}
+        <div className="absolute bottom-0 right-0 w-[40%] h-[5rem] bg-white/80 shadow-lg border border-blue-200 rounded-tl-full flex items-center justify-center">
+          {/* Custom Swiper navigation arrows at bottom right with circular bg */}
+          <div className="flex gap-4 z-50">
+            <button
+              className="swiper-button-prev w-12 h-12 rounded-full bg-white/80 shadow-lg flex items-center justify-center border border-blue-200 hover:bg-blue-100 transition"
+              aria-label="Previous project"
+              type="button"
+            >
+              <svg width="24" height="24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button
+              className="swiper-button-next w-12 h-12 rounded-full bg-white/80 shadow-lg flex items-center justify-center border border-blue-200 hover:bg-blue-100 transition"
+              aria-label="Next project"
+              type="button"
+            >
+              <svg width="24" height="24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+            </button>
+          </div>
+        </div>  
       </div>
     </section>
   )

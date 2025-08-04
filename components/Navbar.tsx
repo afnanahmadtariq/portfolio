@@ -25,7 +25,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav id='navbar' className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'} border-b border-gray-200`}>
+    <nav id='navbar' className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-300 ${isScrolled ? 'bg-white' : 'bg-transparent'} border-b border-gray-200`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center py-3">
           <Link href="/" className="text-2xl font-bold">

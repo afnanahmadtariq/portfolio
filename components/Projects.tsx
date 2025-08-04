@@ -51,21 +51,30 @@ export default function Projects() {
     }
   ]
   return (
-    <>
-    {/* Projects */}
-      <section id="projects" className="w-full h-[calc(100vh-4rem)] bg-gradient-to-br from-white to-blue-100">
+    // ...existing code...
+    // Projects
+    <section id="projects" className="w-full h-[calc(100vh-4rem)] bg-gradient-to-br from-white to-blue-100 flex items-center justify-center relative">
+      <div className="w-full h-full flex items-center justify-center">
         <Swiper
           modules={[Navigation, Pagination]}
           navigation
           pagination={{ clickable: true }}
           spaceBetween={50}
           slidesPerView={1}
-          className="h-full"
+          className="h-full w-full"
         >
           {projects.map((project, index) => (
             <SwiperSlide key={index} className="flex items-center justify-center h-full">
-              <div className="flex flex-col md:flex-row items-center justify-center w-full h-full px-8">
-                <div className="relative w-full md:w-2/3 h-2/3 md:h-full">
+              <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full h-full px-8 max-w-5xl mx-auto">
+                {/* Info on left */}
+                <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:items-start text-left py-8 md:py-0">
+                  <h3 className="text-sm mb-2 text-blue-500 font-medium">{project.tech}</h3>
+                  <h4 className="text-2xl font-bold mb-4 text-blue-900">{project.title}</h4>
+                  <p className="text-base text-gray-700 mb-6">{project.description}</p>
+                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-block px-5 py-2 rounded-full bg-blue-600 text-white font-semibold shadow hover:bg-blue-700 transition">Visit Site</a>
+                </div>
+                {/* Image on right */}
+                <div className="relative w-full md:w-1/2 h-64 md:h-[28rem] flex items-center justify-end">
                   <a
                     href={project.url}
                     target="_blank"
@@ -77,20 +86,32 @@ export default function Projects() {
                       alt={`${project.title} screenshot`}
                       layout="fill"
                       objectFit="contain"
-                      className="rounded-lg"
+                      className="rounded-2xl shadow-lg border border-blue-200"
                     />
                   </a>
-                </div>
-                <div className="mt-8 md:mt-0 md:ml-8 w-full md:w-1/3 text-center md:text-left">
-                  <h3 className="text-sm mb-2 text-gray-500">{project.tech}</h3>
-                  <h4 className="text-xl font-bold mb-4 text-gray-800">{project.title}</h4>
-                  <p className="text-sm text-gray-600">{project.description}</p>
                 </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
-      </section>
-    </>
+      </div>
+      {/* Custom Swiper navigation arrows at bottom right with circular bg */}
+      <div className="absolute bottom-8 right-8 flex gap-4 z-50">
+        <button
+          className="swiper-button-prev w-12 h-12 rounded-full bg-white/80 shadow-lg flex items-center justify-center border border-blue-200 hover:bg-blue-100 transition"
+          aria-label="Previous project"
+          type="button"
+        >
+          <svg width="24" height="24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button
+          className="swiper-button-next w-12 h-12 rounded-full bg-white/80 shadow-lg flex items-center justify-center border border-blue-200 hover:bg-blue-100 transition"
+          aria-label="Next project"
+          type="button"
+        >
+          <svg width="24" height="24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+        </button>
+      </div>
+    </section>
   )
 }

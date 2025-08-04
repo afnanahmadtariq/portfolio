@@ -1,10 +1,11 @@
 import { Navigation, Pagination } from 'swiper/modules';
+import { HiOutlineArrowSmallLeft, HiOutlineArrowSmallRight } from 'react-icons/hi2';
 import Image from "next/image"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export default function Projects() {
   
@@ -54,16 +55,23 @@ export default function Projects() {
   ]
 
   const [projectTitle, setProjectTitle] = useState('')
+
+  // Refs for custom navigation buttons
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
   return (
     <section id="projects" className="w-full h-[calc(100vh-4rem)] bg-gradient-to-br from-white to-blue-100 flex items-center justify-center relative">
       <div className="w-full h-full flex items-center justify-center">
         {/* Top left fixed div */}
-        <div className="absolute top-0 left-0 w-[40%] h-[5rem] bg-white/80 border border-blue-200 rounded-br-full flex items-center justify-center">
+        <div className="absolute z-10 top-0 left-0 w-[40%] h-[5rem] bg-white/60 border border-blue-300 rounded-br-full flex items-center justify-center">
           <h4 className="text-2xl font-bold text-blue-900">{projectTitle}</h4>
         </div>
         <Swiper
           modules={[Navigation, Pagination]}
-          navigation
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
           pagination={{ clickable: true }}
           spaceBetween={50}
           slidesPerView={1}
@@ -102,22 +110,24 @@ export default function Projects() {
           ))}
         </Swiper>
         {/* Bottom right fixed div */}
-        <div className="absolute bottom-0 right-0 w-[40%] h-[5rem] bg-white/80 shadow-lg border border-blue-200 rounded-tl-full flex items-center justify-center">
+        <div className="absolute z-10 bottom-0 right-0 w-[40%] h-[5rem] bg-white/60 border border-blue-300 rounded-tl-full flex items-center justify-center">
           {/* Custom Swiper navigation arrows at bottom right with circular bg */}
-          <div className="flex gap-4 z-50">
+          <div className="flex gap-4 justify-center">
             <button
-              className="swiper-button-prev w-12 h-12 rounded-full bg-white/80 shadow-lg flex items-center justify-center border border-blue-200 hover:bg-blue-100 transition"
+              ref={prevRef}
+              className="custom-swiper-prev w-12 h-12 rounded-full bg-white/80 flex items-center justify-center border border-blue-200 hover:bg-white hover:border-2 hover:border-blue-500 transition"
               aria-label="Previous project"
               type="button"
             >
-              <svg width="24" height="24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+              <HiOutlineArrowSmallLeft size={32} color="#2563eb" />
             </button>
             <button
-              className="swiper-button-next w-12 h-12 rounded-full bg-white/80 shadow-lg flex items-center justify-center border border-blue-200 hover:bg-blue-100 transition"
+              ref={nextRef}
+              className="custom-swiper-next w-12 h-12 rounded-full bg-white/80 flex items-center justify-center border border-blue-200 hover:bg-white hover:border-2 hover:border-blue-500 transition"
               aria-label="Next project"
               type="button"
             >
-              <svg width="24" height="24" fill="none" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+              <HiOutlineArrowSmallRight size={32} color="#2563eb" />
             </button>
           </div>
         </div>  

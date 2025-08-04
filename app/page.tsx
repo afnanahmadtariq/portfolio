@@ -172,10 +172,10 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
               />
             </div>
             <h1 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-down">
-              Hello! I Am <span className="text-blue-600">Afnan Ahmad Tariq</span>
+              Hello! I Am <span className="text-blue-500">Afnan Ahmad Tariq</span>
             </h1>
             <h2 className="text-xl lg:text-3xl font-bold mb-4 animate-fade-in-up">
-              I&apos;m a <span className="text-blue-600">{currentRole}</span>
+              I&apos;m a <span className="text-purple-500">{currentRole}</span>
               <span className="animate-blink text-blue-600">|</span> 
             </h2>          
             <p className="text-sm sm:text-base md:text-lg text-gray-500 mt-4 max-w-4xl mx-auto animate-fade-in-up">
@@ -198,7 +198,6 @@ export default function Home() {  const [currentRole, setCurrentRole] = useState
                   <h3 className="text-base sm:text-lg lg:text-xl xl:text-lg 2xl:text-xl font-bold text-blue-700">{group.category}</h3>
                 </div>                <div className="skills-grid grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-1 2xl:grid-cols-2 gap-2 sm:gap-3 lg:gap-4 xl:gap-3 2xl:gap-4">
                   {group.skills.map((skill, index) => {
-                    // ...existing code...
                     let iconColor = '#60A5FA'; // default blue
                     if (skill.name === 'React.js') iconColor = '#61DAFB';
                     else if (skill.name === 'Next.js') iconColor = '#000000';

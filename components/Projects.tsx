@@ -4,8 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { useState } from 'react';
 
 export default function Projects() {
+  
   const projects = [
     {
       "tech": "Next.js | TailwindCSS | FramerMotion | Emailjs | MongoDB",
@@ -50,11 +52,15 @@ export default function Projects() {
       "url": "https://business-website-site.vercel.app/"
     }
   ]
+
+  const [projectTitle, setProjectTitle] = useState('')
   return (
-    // ...existing code...
-    // Projects
     <section id="projects" className="w-full h-[calc(100vh-4rem)] bg-gradient-to-br from-white to-blue-100 flex items-center justify-center relative">
       <div className="w-full h-full flex items-center justify-center">
+        {/* Top left fixed div */}
+        <div className="absolute top-0 left-0 w-[40%] h-[5rem] bg-white/80 border border-blue-200 rounded-br-full flex items-center justify-center">
+          <h4 className="text-2xl font-bold text-blue-900">{projectTitle}</h4>
+        </div>
         <Swiper
           modules={[Navigation, Pagination]}
           navigation
@@ -62,14 +68,12 @@ export default function Projects() {
           spaceBetween={50}
           slidesPerView={1}
           className="h-full w-full"
+          onSlideChange={(swiper) => setProjectTitle(projects[swiper.activeIndex].title)}
+          onInit={(swiper) => setProjectTitle(projects[swiper.activeIndex].title)}
         >
           {projects.map((project, index) => (
             <SwiperSlide key={index} className="flex items-center justify-center h-full">
               <div className="flex flex-col-reverse md:flex-row items-center justify-between w-full h-full px-8 max-w-5xl mx-auto">
-                {/* Top left fixed div */}
-                <div className="absolute top-0 left-0 w-[40%] h-[5rem] bg-white/80 border border-blue-200 rounded-br-full flex items-center justify-center">
-                  <h4 className="text-2xl font-bold text-blue-900">{project.title}</h4>
-                </div>
                 {/* Info on left */}
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:items-start text-left py-8 md:py-0">
                   <h3 className="text-sm mb-2 text-blue-500 font-medium">{project.tech}</h3>

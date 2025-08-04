@@ -12,82 +12,82 @@ import {Shield, Lock, Key, Users, Coffee } from 'lucide-react'
 
 export default function Skills() {
   // Redesigned skills section with comprehensive tech stack
-    const webSkills = [
-      {
-        category: 'Languages',
-        skills: [
-          { name: 'JavaScript', icon: SiJavascript, level: 'Advanced' },
-          { name: 'TypeScript', icon: SiTypescript, level: 'Advanced' },
-          { name: 'Python', icon: SiPython, level: 'Advanced' },
-          { name: 'Java', icon: Coffee, level: 'Intermediate' },
-          { name: 'C/C++', icon: SiCplusplus, level: 'Intermediate' },
-          { name: 'Rust', icon: SiRust, level: 'Beginner' },
-        ]
-      },
-      {
-        category: 'Frontend',
-        skills: [
-          { name: 'Next.js', icon: SiNextdotjs, level: 'Advanced' },
-          { name: 'React.js', icon: SiReact, level: 'Advanced' },
-          { name: 'Tailwind CSS', icon: SiTailwindcss, level: 'Advanced' },
-          { name: 'ShadCN', icon: SiReact, level: 'Advanced' },
-        ]
-      },
-      {
-        category: 'Backend',
-        skills: [
-          { name: 'Node.js', icon: SiNodedotjs, level: 'Advanced' },
-          { name: 'Express.js', icon: SiExpress, level: 'Advanced' },
-          { name: 'Django', icon: SiDjango, level: 'Intermediate' },
-          { name: 'Rocket', icon: SiRust, level: 'Beginner' },
-        ]
-      },
-      {
-        category: 'Security & Auth',
-        skills: [
-          { name: 'OAuth 2.0', icon: Shield, level: 'Advanced' },
-          { name: 'JWT Tokens', icon: Key, level: 'Advanced' },
-          { name: 'Session Mgmt', icon: Lock, level: 'Advanced' },
-          { name: 'RBAC', icon: Users, level: 'Intermediate' },
-        ]
-      },
-      {
-        category: 'Cloud',
-        skills: [
-          { name: 'AWS', icon: SiAmazon, level: 'Intermediate' },
-          { name: 'MS Azure', icon: SiMicrosoftazure, level: 'Intermediate' },
-          { name: 'Vercel', icon: SiVercel, level: 'Advanced' },
-          { name: 'Netlify', icon: SiNetlify, level: 'Advanced' },
-        ]
-      },
-      {
-        category: 'Databases',
-        skills: [
-          { name: 'MongoDB', icon: SiMongodb, level: 'Advanced' },
-          { name: 'PostgreSQL', icon: SiPostgresql, level: 'Intermediate' },
-          { name: 'MySQL', icon: SiMysql, level: 'Intermediate' },
-          { name: 'Firebase', icon: SiFirebase, level: 'Intermediate' },
-        ]
-      },
-      {
-        category: 'DevOps',
-        skills: [
-          { name: 'Git', icon: SiGit, level: 'Advanced' },
-          { name: 'Jenkins', icon: SiJenkins, level: 'Intermediate' },
-          { name: 'Kubernetes', icon: SiKubernetes, level: 'Beginner' },
-          { name: 'Ansible', icon: SiAnsible, level: 'Beginner' },
-        ]
-      },
-      {
-        category: 'Tools',
-        skills: [
-          { name: 'VS Code', icon: SiVisualstudiocode, level: 'Advanced' },
-          { name: 'GitHub', icon: SiGithub, level: 'Advanced' },
-          { name: 'Figma', icon: SiFigma, level: 'Advanced' },
-          { name: 'IntelliJ IDEA', icon: SiIntellijidea, level: 'Intermediate' },
-        ]
-      }
-    ];
+  const webSkills = [
+    {
+      category: 'Languages',
+      skills: [
+        { name: 'JavaScript', icon: SiJavascript, level: 'Advanced' },
+        { name: 'TypeScript', icon: SiTypescript, level: 'Advanced' },
+        { name: 'Python', icon: SiPython, level: 'Advanced' },
+        { name: 'Java', icon: Coffee, level: 'Intermediate' },
+        { name: 'C/C++', icon: SiCplusplus, level: 'Intermediate' },
+        { name: 'Rust', icon: SiRust, level: 'Beginner' },
+      ]
+    },
+    {
+      category: 'Frontend',
+      skills: [
+        { name: 'Next.js', icon: SiNextdotjs, level: 'Advanced' },
+        { name: 'React.js', icon: SiReact, level: 'Advanced' },
+        { name: 'Tailwind CSS', icon: SiTailwindcss, level: 'Advanced' },
+        { name: 'ShadCN', icon: SiReact, level: 'Advanced' },
+      ]
+    },
+    {
+      category: 'Backend',
+      skills: [
+        { name: 'Node.js', icon: SiNodedotjs, level: 'Advanced' },
+        { name: 'Express.js', icon: SiExpress, level: 'Advanced' },
+        { name: 'Django', icon: SiDjango, level: 'Intermediate' },
+        { name: 'Rocket', icon: SiRust, level: 'Beginner' },
+      ]
+    },
+    {
+      category: 'Security & Auth',
+      skills: [
+        { name: 'OAuth 2.0', icon: Shield, level: 'Advanced' },
+        { name: 'JWT Tokens', icon: Key, level: 'Advanced' },
+        { name: 'Session Mgmt', icon: Lock, level: 'Advanced' },
+        { name: 'RBAC', icon: Users, level: 'Intermediate' },
+      ]
+    },
+    {
+      category: 'Cloud',
+      skills: [
+        { name: 'AWS', icon: SiAmazon, level: 'Intermediate' },
+        { name: 'MS Azure', icon: SiMicrosoftazure, level: 'Intermediate' },
+        { name: 'Vercel', icon: SiVercel, level: 'Advanced' },
+        { name: 'Netlify', icon: SiNetlify, level: 'Advanced' },
+      ]
+    },
+    {
+      category: 'Databases',
+      skills: [
+        { name: 'MongoDB', icon: SiMongodb, level: 'Advanced' },
+        { name: 'PostgreSQL', icon: SiPostgresql, level: 'Intermediate' },
+        { name: 'MySQL', icon: SiMysql, level: 'Intermediate' },
+        { name: 'Firebase', icon: SiFirebase, level: 'Intermediate' },
+      ]
+    },
+    {
+      category: 'DevOps',
+      skills: [
+        { name: 'Git', icon: SiGit, level: 'Advanced' },
+        { name: 'Jenkins', icon: SiJenkins, level: 'Intermediate' },
+        { name: 'Kubernetes', icon: SiKubernetes, level: 'Beginner' },
+        { name: 'Ansible', icon: SiAnsible, level: 'Beginner' },
+      ]
+    },
+    {
+      category: 'Tools',
+      skills: [
+        { name: 'VS Code', icon: SiVisualstudiocode, level: 'Advanced' },
+        { name: 'GitHub', icon: SiGithub, level: 'Advanced' },
+        { name: 'Figma', icon: SiFigma, level: 'Advanced' },
+        { name: 'IntelliJ IDEA', icon: SiIntellijidea, level: 'Intermediate' },
+      ]
+    }
+  ];
   return (
     <>
     {/* Skills Section */}

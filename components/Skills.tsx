@@ -126,7 +126,7 @@ export default function Skills() {
   }, [webSkills.length]);
 
   return (
-    <section id="skills" className="container bg-pink-500 h-[calc(100vh-4rem)] w-full flex items-center">
+    <section id="skills" className="container bg-gradient-to-br from-white to-blue-100 h-[calc(100vh-4rem)] w-full flex items-center">
       <div className="flex flex-row w-full h-full">
         {/* Circular Category Slider - half visible, rotates */}
         <div className="relative flex items-center justify-center w-[18rem] h-full">

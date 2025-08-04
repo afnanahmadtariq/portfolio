@@ -53,7 +53,7 @@ export default function Projects() {
   return (
     <>
     {/* Projects */}
-      <section id="projects" className="w-full h-[calc(100vh-4rem)] bg-black">
+      <section id="projects" className="w-full h-[calc(100vh-4rem)] bg-gradient-to-br from-white to-blue-100">
         <Swiper
           modules={[Navigation, Pagination]}
           navigation

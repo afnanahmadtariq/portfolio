@@ -127,9 +127,9 @@ export default function Skills() {
 
   return (
     <section id="skills" className="container bg-gradient-to-br from-white to-blue-100 h-[calc(100vh-4rem)] w-full flex items-center">
-      <div className="flex flex-row w-full h-full">
+      <div className="flex flex-col md:flex-row w-full h-full">
         {/* Circular Category Slider - half visible, rotates */}
-        <div className="relative flex items-center justify-center w-[18rem] h-full">
+        <div className="relative hidden md:flex items-center justify-center w-[18rem] h-full">
           <div
             ref={circleRef}
             className="absolute w-[36rem] h-[36rem] -left-[22rem] flex items-center justify-center transition-all duration-300 "
@@ -178,6 +178,8 @@ export default function Skills() {
               );
             })}
           </div>
+        </div>
+        <div className='flex md:hidden'>
         </div>
         {/* Skills Display - Modern Grid Layout */}
         <div className="flex-1 flex flex-col justify-center items-center px-4 py-8">

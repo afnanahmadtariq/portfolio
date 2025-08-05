@@ -45,7 +45,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center py-3">
           <Link href="/" className="text-2xl font-bold">
             <Image
-              src="/a.svg"
+              src="/media/a.svg"
               alt={`A`}
               width={35}
               height={95}
@@ -59,6 +59,7 @@ export default function Navbar() {
 
           <div className="hidden md:flex lg:flex gap-6">
             <Link href="/#home" className="text-gray-900 transition-colors underline-animation">Home</Link>
+            <Link href="/#highlights" className="text-gray-900 transition-colors underline-animation">Highlights</Link>
             <Link href="/#skills" className="text-gray-900 transition-colors underline-animation">Skills</Link>
             <Link href="/#projects" className="text-gray-900 transition-colors underline-animation">Projects</Link>
             <Link href="/#contact" className="text-gray-900 transition-colors underline-animation">Contact</Link>
@@ -72,6 +73,7 @@ export default function Navbar() {
         </div>
         <div className="flex flex-col items-center space-y-8 py-10">
           <button onClick={() => handleMenuClick('home')} className="hover:text-blue-600 text-gray-900 transition-colors">Home</button>
+          <button onClick={() => handleMenuClick('highlights')} className="hover:text-blue-600 text-gray-900 transition-colors">Highlights</button>
           <button onClick={() => handleMenuClick('skills')} className="hover:text-blue-600 text-gray-900 transition-colors">Skills</button>
           <button onClick={() => handleMenuClick('projects')} className="hover:text-blue-600 text-gray-900 transition-colors">Projects</button>
           <button onClick={() => handleMenuClick('contact')} className="hover:text-blue-600 text-gray-900 transition-colors">Contact</button>

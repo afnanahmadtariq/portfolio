@@ -6,51 +6,104 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { useState, useRef } from 'react';
+import { FaGithub } from 'react-icons/fa';
+import { FaArrowUpRightFromSquare } from 'react-icons/fa6';
 
 export default function Projects() {
-  
-  const projects = [
+  type Project = {
+    tech: string;
+    title: string;
+    description: string;
+    image: string;
+    url?: string;
+    github?: string;
+  };
+
+  const projects: Project[] = [
     {
-      "tech": "Next.js | TailwindCSS | FramerMotion | Emailjs | MongoDB",
-      "title": "Devstract",
-      "description": "Devstract is a modern web platform featuring responsive design, dynamic animations, reusable UI components, and robust APIs for user subscription and email communication. It includes dedicated pages for contact, FAQs, legal policies, and an engaging carousel, delivering a seamless and interactive user experience.",
-      "image": "/screenshots/devstract.png",
-      "url": "https://devstract.vercel.app/"
+      tech: "Next.js | TailwindCSS | FramerMotion | Emailjs | MongoDB",
+      title: "Devstract",
+      description: "Devstract is a modern web platform featuring responsive design, dynamic animations, reusable UI components, and robust APIs for user subscription and email communication. It includes dedicated pages for contact, FAQs, legal policies, and an engaging carousel, delivering a seamless and interactive user experience.",
+      image: "/screenshots/devstract.png",
+      url: "https://devstract.vercel.app/",
+      github: "https://github.com/afnanahmadtariq/Devstract.git"
+    },
+    // {
+    //   tech:'Flutter | Python',
+    //   title: 'Webhook Inspector',
+    //   description: 'Webhook Inspector Django is a micro web application designed for developers to receive, log, and inspect incoming webhooks in real time. It features secure, temporary endpoints and async processing for efficient webhook testing and debugging.',
+    //   image: '/screenshots/webhook-inspector.png',
+    //   url: 'https://webhook-inspector.vercel.app',
+    //   github: 'https://github.com/afnanahmadtariq/Webhook-Inspector-Django.git'
+    // },
+    {
+      tech:'Flutter | Python',
+      title: 'Last Seen',
+      description: 'A modern website monitoring and uptime tracking application that helps you monitor your websites and get real-time status updates.',
+      image: '/screenshots/last-seen.png',
+      url: 'https://last-seen-ping.vercel.app/',
+      github: 'https://github.com/afnanahmadtariq/last_seen.git'
+    },
+    // {
+    //   tech:'Flutter | Python',
+    //   title: 'Autometa',
+    //   description: '!',
+    //   image: '/screenshots/autometa.png',
+    //   url: 'https://autometa-six.vercel.app/',
+    //   github: 'https://github.com/afnanahmadtariq/Autometa.git'
+    // },
+    // {
+    //   tech:'Flutter | Python',
+    //   title: 'Mood Tracker',
+    //   description: '!',
+    //   image: '/screenshots/mood-tracker.png', 
+    //   url: 'https://mood-tracker-site.vercel.app',
+    //   github: 'https://github.com/afnanahmadtariq/Mood-Tracker.git'
+    // },
+    // {
+    //   tech:'Flutter | Python',
+    //   title: 'Tecora',
+    //   description: '!',
+    //   image: '/screenshots/tecora.png', 
+    //   url: 'https://tecora.vercel.app/',
+    //   github: 'https://github.com/afnanahmadtariq/Tecora.git'
+    // },
+    {
+      tech: "NextJs | ShadCN UI",
+      title: "News Hub",
+      description: "A dynamic news aggregation platform designed for efficient content delivery and user engagement. Features a structured layout to present diverse articles, ensuring a seamless Browse experience.",
+      image: "/screenshots/news-hub-site.png",
+      url: "https://news-hub-site.vercel.app/"
     },
     {
-      "tech": "NextJs | ShacdCN UI",
-      "title": "News Hub",
-      "description": "A dynamic news aggregation platform designed for efficient content delivery and user engagement. Features a structured layout to present diverse articles, ensuring a seamless Browse experience.",
-      "image": "/screenshots/news-hub-site.png",
-      "url": "https://news-hub-site.vercel.app/"
+      tech:'Flutter | Python',
+      title: 'Agen',
+      description: 'Agen is an innovative app that automates the process of generating assignments by scraping relevant content from across the internet. Imagine a tool that can pull up-to-date information, organize it, and generate structured assignments in a matter of seconds. Whether you\'re a student, educator, or content creator, Agen will save you tons of time by doing the heavy lifting for you!',
+      image: '/screenshots/agen.png', 
+      github: 'https://github.com/afnanahmadtariq/Agen/releases'
     },
     {
-      "tech": "NextJs | MongoDB",
-      "title": "Learn Hub",
-      "description": "An educational platform focusing on personalized learning paths with intelligent feedback. Designed for practical skill development and industry-relevant projects, fostering rapid progress for users.",
-      "image": "/screenshots/learn-hub-site.png",
-      "url": "https://learn-hub-site.vercel.app/"
+      tech:'ReactJs | Bootstrap',
+      title: 'Weather Forecast',
+      description: 'This Weather Forecast App provides users with real-time weather information based on geographic coordinates (latitude and longitude). Built with React and Bootstrap, the app features a clean, user-friendly interface where users can input location details and view weather forecasts for that area.',
+      image: '/screenshots/weather.png',
+      url: 'https://weather-forecast-ruddy-gamma.vercel.app/',
+      github: 'https://github.com/afnanahmadtariq/Weather-Forecast.git'
     },
     {
-      "tech": "Next.js | MongoDB | Express.js",
-      "title": "Modern Shop",
-      "description": "A premium e-commerce store with a focus on a seamless shopping experience and modern design. Features product catalog display, shopping cart functionality, and dynamic total calculation.",
-      "image": "/screenshots/modern-shop-site.png",
-      "url": "https://modern-shop-site.vercel.app/"
+      tech:'Java | JavaFX',
+      title: 'Tic Tac Ultimate | Quixo',
+      description: 'This project brings three iconic games into one seamless experience; Tic Tac Toe: The classic 3x3 grid. Ultimate Tic Tac Toe: A more complex version with 9 smaller grids, adding layers of strategy. Quixo: A fun variation with shifting tiles that adds a unique twist to traditional Tic Tac Toe!',
+      image: '/screenshots/uttt.png',
+      github: 'https://github.com/afnanahmadtariq/Tic-Tac-Ultimate.git'
     },
-    {
-      "tech": "Next.js | MongoDB",
-      "title": "Track Pro",
-      "description": "A professional vehicle tracking solution offering real-time GPS tracking and fleet management capabilities. Includes features for detailed analytics, maintenance alerts, and driver behavior monitoring.",
-      "image": "/screenshots/track-pro-site.png",
-      "url": "https://track-pro-site.vercel.app/"
-    },
-    {
-      "tech": "NextJs | Tailwind CSS",
-      "title": "Business Website",
-      "description": "A comprehensive business website offering services such as digital marketing and business consulting. Showcases a range of custom solutions and data analytics, emphasizing personalized strategies and measurable results.",
-      "image": "/screenshots/business-website-site.png",
-      "url": "https://business-website-site.vercel.app/"
+    {      
+      tech:'Vanilla Js',
+      title: 'Catch Me',
+      description: 'Built entirely with Vanilla JavaScript, this simple yet fun game showcases the power of JavaScript in creating interactive experiences from scratch. Objective: Click on the moving icon to score points. Two Modes; Timed Mode: Rack up as many points as possible within a set time limit.Levels Mode: Icons move faster as you level up, challenging your reflexes!',
+      image: '/screenshots/catch-me.png',
+      url: 'https://catchme-game.vercel.app/',
+      github: 'https://github.com/afnanahmadtariq/catchme.git'
     }
   ]
 
@@ -96,7 +149,20 @@ export default function Projects() {
                 <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:items-start text-left py-4 sm:py-8 md:py-0">
                   <h3 className="text-xs sm:text-sm mb-2 text-blue-500 font-medium">{project.tech}</h3>
                   <p className="text-sm sm:text-base text-gray-700 mb-6">{project.description}</p>
-                  <a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-block px-3 py-1 sm:px-5 sm:py-2 rounded-full bg-blue-600 text-white text-sm sm:text-base font-normal sm:font-semibold shadow hover:bg-blue-700 transition">Visit Site</a>
+                  <div className="flex gap-3 items-center">
+                    {project.url && (
+                      <a href={project.url} target="_blank" rel="noopener noreferrer" className="px-3 py-1 sm:px-5 sm:py-2 rounded-full bg-blue-600 text-white text-sm sm:text-base font-normal sm:font-semibold shadow hover:bg-blue-700 transition flex items-center gap-2">
+                        Visit Site
+                        <FaArrowUpRightFromSquare />
+                      </a>
+                    )}
+                    {project.github && (
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="px-2 py-1 sm:px-4 sm:py-2 rounded-full bg-gray-900 text-white text-sm sm:text-base font-normal sm:font-semibold shadow hover:bg-gray-800 transition flex items-center gap-2">
+                        <FaGithub />
+                        GitHub
+                      </a>
+                    )}
+                  </div>
                 </div>
                 {/* Image on right */}
                 <div className="relative w-full md:w-4/5 h-56 md:h-[35rem] flex items-center justify-center md:-mt-[5rem]">
@@ -106,8 +172,8 @@ export default function Projects() {
                     <Image
                       src={project.image}
                       alt={`${project.title} screenshot`}
-                      layout="fill"
-                      objectFit="contain"
+                      fill
+                      style={{ objectFit: "contain" }}
                       className="rounded-2xl shadow-lg border border-blue-200"
                     />
                   </span>

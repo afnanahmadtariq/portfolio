@@ -2,12 +2,22 @@ import {
   SiReact, SiNextdotjs, SiTailwindcss, SiTypescript, 
   SiFigma, SiGit,
   SiMongodb, SiExpress, SiPython, SiJavascript,
-  SiCplusplus, SiRust, SiNodedotjs, SiDjango, SiAmazon,
+  SiCplusplus, SiRust, SiNodedotjs, SiDjango,
   SiMicrosoftazure, SiVercel, SiNetlify, SiPostgresql, SiMysql,
   SiFirebase, SiJenkins, SiKubernetes, SiAnsible, SiVisualstudiocode,
-  SiGithub, SiIntellijidea
+  SiGithub, SiIntellijidea, SiShadcnui,
+  SiExpo,
+  SiAndroidstudio,
+  SiFlutter
 } from 'react-icons/si'
-import {Shield, Lock, Key, Users, Coffee } from 'lucide-react'
+import { MdOutlineScreenSearchDesktop, MdOutlineSecurity } from 'react-icons/md';
+import { FaServer, FaDatabase, FaFileCode, FaTools } from 'react-icons/fa';
+import { VscAzureDevops } from 'react-icons/vsc';
+import { TbDeviceMobileCode } from 'react-icons/tb';
+import { IoMdCloud } from 'react-icons/io';
+import { IoRocketSharp } from 'react-icons/io5';
+import { FaAws, FaJava } from "react-icons/fa6";
+import {Shield, Lock, Key, Users} from 'lucide-react'
 import "keen-slider/keen-slider.min.css";
 import { useKeenSlider } from "keen-slider/react";
 
@@ -39,7 +49,7 @@ export default function Skills() {
         { name: 'JavaScript', icon: SiJavascript, level: 'Advanced' },
         { name: 'TypeScript', icon: SiTypescript, level: 'Advanced' },
         { name: 'Python', icon: SiPython, level: 'Advanced' },
-        { name: 'Java', icon: Coffee, level: 'Intermediate' },
+        { name: 'Java', icon: FaJava, level: 'Intermediate' },
         { name: 'C/C++', icon: SiCplusplus, level: 'Intermediate' },
         { name: 'Rust', icon: SiRust, level: 'Beginner' },
       ]
@@ -50,7 +60,7 @@ export default function Skills() {
         { name: 'Next.js', icon: SiNextdotjs, level: 'Advanced' },
         { name: 'React.js', icon: SiReact, level: 'Advanced' },
         { name: 'Tailwind CSS', icon: SiTailwindcss, level: 'Advanced' },
-        { name: 'ShadCN', icon: SiReact, level: 'Advanced' },
+        { name: 'ShadCN', icon: SiShadcnui, level: 'Advanced' },
       ]
     },
     {
@@ -59,7 +69,7 @@ export default function Skills() {
         { name: 'Node.js', icon: SiNodedotjs, level: 'Advanced' },
         { name: 'Express.js', icon: SiExpress, level: 'Advanced' },
         { name: 'Django', icon: SiDjango, level: 'Intermediate' },
-        { name: 'Rocket', icon: SiRust, level: 'Beginner' },
+        { name: 'Rocket', icon: IoRocketSharp, level: 'Beginner' },
       ]
     },
     {
@@ -74,7 +84,7 @@ export default function Skills() {
     {
       category: 'Cloud',
       skills: [
-        { name: 'AWS', icon: SiAmazon, level: 'Intermediate' },
+        { name: 'AWS', icon: FaAws, level: 'Intermediate' },
         { name: 'MS Azure', icon: SiMicrosoftazure, level: 'Intermediate' },
         { name: 'Vercel', icon: SiVercel, level: 'Advanced' },
         { name: 'Netlify', icon: SiNetlify, level: 'Advanced' },
@@ -111,9 +121,9 @@ export default function Skills() {
       category: 'Mobile App Development',
       skills: [
         { name: 'React Native', icon: SiReact, level: 'Intermediate' },
-        { name: 'Flutter', icon: SiFigma, level: 'Beginner' },
-        { name: 'Expo', icon: SiReact, level: 'Beginner' },
-        { name: 'Android Studio', icon: SiVisualstudiocode, level: 'Beginner' },
+        { name: 'Flutter', icon: SiFlutter, level: 'Beginner' },
+        { name: 'Expo', icon: SiExpo, level: 'Beginner' },
+        { name: 'Android Studio', icon: SiAndroidstudio, level: 'Beginner' },
       ]
     }
   ];
@@ -215,15 +225,15 @@ export default function Skills() {
                   aria-label={group.category}
                 >
                   {/* Category Icon */}
-                  {group.category === 'Languages' && <SiJavascript className="w-9 h-9" style={{ color: '#F7DF1E' }} />}
-                  {group.category === 'Frontend' && <SiReact className="w-9 h-9" style={{ color: '#61DAFB' }} />}
-                  {group.category === 'Backend' && <SiNodedotjs className="w-9 h-9" style={{ color: '#339933' }} />}
-                  {group.category === 'Security & Auth' && <Shield className="w-9 h-9" style={{ color: '#FF6B6B' }} />}
-                  {group.category === 'Cloud' && <SiAmazon className="w-9 h-9" style={{ color: '#FF9900' }} />}
-                  {group.category === 'Databases' && <SiMongodb className="w-9 h-9" style={{ color: '#47A248' }} />}
-                  {group.category === 'DevOps' && <SiGit className="w-9 h-9" style={{ color: '#F05032' }} />}
-                  {group.category === 'Tools' && <SiVisualstudiocode className="w-9 h-9" style={{ color: '#007ACC' }} />}
-                  {group.category === 'Mobile App Development' && <SiReact className="w-9 h-9" style={{ color: '#61DAFB' }} />}
+                  {group.category === 'Languages' && <FaFileCode className="w-9 h-9" style={{ color: '#3178C6' }} />}
+                  {group.category === 'Frontend' && <MdOutlineScreenSearchDesktop className="w-9 h-9" style={{ color: '#61DAFB' }} />}
+                  {group.category === 'Backend' && <FaServer className="w-9 h-9" style={{ color: '#339933' }} />}
+                  {group.category === 'Security & Auth' && <MdOutlineSecurity className="w-9 h-9" style={{ color: '#FF6B6B' }} />}
+                  {group.category === 'Cloud' && <IoMdCloud className="w-9 h-9" style={{ color: '#FF9900' }} />}
+                  {group.category === 'Databases' && <FaDatabase className="w-9 h-9" style={{ color: '#336791' }} />}
+                  {group.category === 'DevOps' && <VscAzureDevops className="w-9 h-9" style={{ color: '#0078D4' }} />}
+                  {group.category === 'Tools' && <FaTools className="w-9 h-9" style={{ color: '#A259FF' }} />}
+                  {group.category === 'Mobile App Development' && <TbDeviceMobileCode className="w-9 h-9" style={{ color: '#3DDC84' }} />}
                   <span className={`text-base font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-400'}`}>{group.category.split(' ')[0]}</span>
                 </motion.button>
               );
@@ -244,15 +254,15 @@ export default function Skills() {
                     aria-label={group.category}
                   >
                     {/* Category Icon */}
-                    {group.category === 'Languages' && <SiJavascript className="w-4 h-4" style={{ color: '#F7DF1E' }} />}
-                    {group.category === 'Frontend' && <SiReact className="w-4 h-4" style={{ color: '#61DAFB' }} />}
-                    {group.category === 'Backend' && <SiNodedotjs className="w-4 h-4" style={{ color: '#339933' }} />}
-                    {group.category === 'Security & Auth' && <Shield className="w-4 h-4" style={{ color: '#FF6B6B' }} />}
-                    {group.category === 'Cloud' && <SiAmazon className="w-4 h-4" style={{ color: '#FF9900' }} />}
-                    {group.category === 'Databases' && <SiMongodb className="w-4 h-4" style={{ color: '#47A248' }} />}
-                    {group.category === 'DevOps' && <SiGit className="w-4 h-4" style={{ color: '#F05032' }} />}
-                    {group.category === 'Tools' && <SiVisualstudiocode className="w-4 h-4" style={{ color: '#007ACC' }} />}
-                    {group.category === 'Mobile App Development' && <SiReact className="w-4 h-4" style={{ color: '#61DAFB' }} />}
+                    {group.category === 'Languages' && <FaFileCode className="w-4 h-4" style={{ color: '#3178C6' }} />}
+                    {group.category === 'Frontend' && <MdOutlineScreenSearchDesktop className="w-4 h-4" style={{ color: '#61DAFB' }} />}
+                    {group.category === 'Backend' && <FaServer className="w-4 h-4" style={{ color: '#339933' }} />}
+                    {group.category === 'Security & Auth' && <MdOutlineSecurity className="w-4 h-4" style={{ color: '#FF6B6B' }} />}
+                    {group.category === 'Cloud' && <IoMdCloud className="w-4 h-4" style={{ color: '#FF9900' }} />}
+                    {group.category === 'Databases' && <FaDatabase className="w-4 h-4" style={{ color: '#336791' }} />}
+                    {group.category === 'DevOps' && <VscAzureDevops className="w-4 h-4" style={{ color: '#0078D4' }} />}
+                    {group.category === 'Tools' && <FaTools className="w-4 h-4" style={{ color: '#A259FF' }} />}
+                    {group.category === 'Mobile App Development' && <TbDeviceMobileCode className="w-4 h-4" style={{ color: '#3DDC84' }} />}
                     <span className={`text-xs font-bold mt-1 ${isSelected ? 'text-blue-700' : 'text-blue-400'}`}>{group.category.split(' ')[0]}</span>
                   </button>
                 </div>
@@ -265,15 +275,15 @@ export default function Skills() {
           <div className="mb-6 sm:mb-8 flex flex-col items-center">
             <div className="flex items-center gap-3 sm:gap-4 mb-2">
               <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-full bg-gradient-to-br from-white to-blue-50 shadow-lg border border-blue-300">
-                {selectedGroup.category === 'Languages' && <SiJavascript className="w-8 h-8" style={{ color: '#F7DF1E' }} />}
-                {selectedGroup.category === 'Frontend' && <SiReact className="w-8 h-8" style={{ color: '#61DAFB' }} />}
-                {selectedGroup.category === 'Backend' && <SiNodedotjs className="w-8 h-8" style={{ color: '#339933' }} />}
-                {selectedGroup.category === 'Security & Auth' && <Shield className="w-8 h-8" style={{ color: '#FF6B6B' }} />}
-                {selectedGroup.category === 'Cloud' && <SiAmazon className="w-8 h-8" style={{ color: '#FF9900' }} />}
-                {selectedGroup.category === 'Databases' && <SiMongodb className="w-8 h-8" style={{ color: '#47A248' }} />}
-                {selectedGroup.category === 'DevOps' && <SiGit className="w-8 h-8" style={{ color: '#F05032' }} />}
-                {selectedGroup.category === 'Tools' && <SiVisualstudiocode className="w-8 h-8" style={{ color: '#007ACC' }} />}
-                {selectedGroup.category === 'Mobile App Development' && <SiReact className="w-8 h-8" style={{ color: '#61DAFB' }} />}
+                {selectedGroup.category === 'Languages' && <FaFileCode className="w-8 h-8" style={{ color: '#3178C6' }} />}
+                {selectedGroup.category === 'Frontend' && <MdOutlineScreenSearchDesktop className="w-8 h-8" style={{ color: '#61DAFB' }} />}
+                {selectedGroup.category === 'Backend' && <FaServer className="w-8 h-8" style={{ color: '#339933' }} />}
+                {selectedGroup.category === 'Security & Auth' && <MdOutlineSecurity className="w-8 h-8" style={{ color: '#FF6B6B' }} />}
+                {selectedGroup.category === 'Cloud' && <IoMdCloud className="w-8 h-8" style={{ color: '#FF9900' }} />}
+                {selectedGroup.category === 'Databases' && <FaDatabase className="w-8 h-8" style={{ color: '#336791' }} />}
+                {selectedGroup.category === 'DevOps' && <VscAzureDevops className="w-8 h-8" style={{ color: '#0078D4' }} />}
+                {selectedGroup.category === 'Tools' && <FaTools className="w-8 h-8" style={{ color: '#A259FF' }} />}
+                {selectedGroup.category === 'Mobile App Development' && <TbDeviceMobileCode className="w-8 h-8" style={{ color: '#3DDC84' }} />}
               </div>
               <h3 className="text-lg sm:text-2xl font-bold text-blue-800 tracking-tight">{selectedGroup.category}</h3>
             </div>
@@ -316,16 +326,22 @@ export default function Skills() {
               else if (skill.name === 'GitHub') iconColor = '#181717';
               else if (skill.name === 'Figma') iconColor = '#A259FF';
               else if (skill.name === 'IntelliJ IDEA') iconColor = '#000000';
+              else if (skill.name === 'React Native') iconColor = '#61DAFB';
+              else if (skill.name === 'Flutter') iconColor = '#02569B';
+              else if (skill.name === 'Expo') iconColor = '#000020';
+              else if (skill.name === 'Android Studio') iconColor = '#3DDC84';
               return (
                 <div
                   key={skill.name}
                   className="flex flex-col items-center bg-white rounded-2xl shadow-md hover:shadow-xl transition-shadow duration-300 p-3 sm:p-5 border border-blue-100 group relative"
                   style={{ animationDelay: `${index * 0.08}s` }}
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-white to-blue-50 mb-2 sm:mb-3 border border-blue-200 group-hover:scale-110 transition-transform duration-300">
-                    <skill.icon className="w-7 h-7 sm:w-8 sm:h-8" color={iconColor} />
+                  <div className='flex flex-row sm:flex-col gap-4 sm:gap-0 items-center justify-start sm:justify-center w-full px-1 sm:px-0'>
+                    <div className="w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-white to-blue-50 mb-2 sm:mb-3 border border-blue-200 group-hover:scale-110 transition-transform duration-300">
+                      <skill.icon className="w-5 h-5 sm:w-8 sm:h-8" color={iconColor} />
+                    </div>
+                    <span className="font-semibold text-sm sm:text-base text-blue-700 mb-1 sm:mb-2 text-center">{skill.name}</span>
                   </div>
-                  <span className="font-semibold text-sm sm:text-base text-blue-700 mb-1 sm:mb-2 text-center">{skill.name}</span>
                   <div className="w-full h-2 bg-blue-100 rounded-full overflow-hidden mb-1 sm:mb-2">
                     <div
                       className={

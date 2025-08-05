@@ -59,7 +59,7 @@ export default function TechShowcase() {
           <div className="absolute inset-0 flex items-center justify-center">
             <span className="text-6xl animate-float">
             <Image
-                  src="/a.svg"
+                  src="/media/a.svg"
                   alt={`A`}
                   width={60}
                   height={95}

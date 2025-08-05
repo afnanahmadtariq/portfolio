@@ -75,13 +75,13 @@ export default function Projects() {
       image: "/screenshots/news-hub-site.png",
       url: "https://news-hub-site.vercel.app/"
     },
-    {
-      tech:'Flutter | Python',
-      title: 'Agen',
-      description: 'Agen is an innovative app that automates the process of generating assignments by scraping relevant content from across the internet. Imagine a tool that can pull up-to-date information, organize it, and generate structured assignments in a matter of seconds. Whether you\'re a student, educator, or content creator, Agen will save you tons of time by doing the heavy lifting for you!',
-      image: '/screenshots/agen.png', 
-      github: 'https://github.com/afnanahmadtariq/Agen/releases'
-    },
+    // {
+    //   tech:'Flutter | Python',
+    //   title: 'Agen',
+    //   description: 'Agen is an innovative app that automates the process of generating assignments by scraping relevant content from across the internet. Imagine a tool that can pull up-to-date information, organize it, and generate structured assignments in a matter of seconds. Whether you\'re a student, educator, or content creator, Agen will save you tons of time by doing the heavy lifting for you!',
+    //   image: '/screenshots/agen.png', 
+    //   github: 'https://github.com/afnanahmadtariq/Agen/releases'
+    // },
     {
       tech:'ReactJs | Bootstrap',
       title: 'Weather Forecast',
@@ -90,13 +90,13 @@ export default function Projects() {
       url: 'https://weather-forecast-ruddy-gamma.vercel.app/',
       github: 'https://github.com/afnanahmadtariq/Weather-Forecast.git'
     },
-    {
-      tech:'Java | JavaFX',
-      title: 'Tic Tac Ultimate | Quixo',
-      description: 'This project brings three iconic games into one seamless experience; Tic Tac Toe: The classic 3x3 grid. Ultimate Tic Tac Toe: A more complex version with 9 smaller grids, adding layers of strategy. Quixo: A fun variation with shifting tiles that adds a unique twist to traditional Tic Tac Toe!',
-      image: '/screenshots/uttt.png',
-      github: 'https://github.com/afnanahmadtariq/Tic-Tac-Ultimate.git'
-    },
+    // {
+    //   tech:'Java | JavaFX',
+    //   title: 'Tic Tac Ultimate | Quixo',
+    //   description: 'This project brings three iconic games into one seamless experience; Tic Tac Toe: The classic 3x3 grid. Ultimate Tic Tac Toe: A more complex version with 9 smaller grids, adding layers of strategy. Quixo: A fun variation with shifting tiles that adds a unique twist to traditional Tic Tac Toe!',
+    //   image: '/screenshots/uttt.png',
+    //   github: 'https://github.com/afnanahmadtariq/Tic-Tac-Ultimate.git'
+    // },
     {      
       tech:'Vanilla Js',
       title: 'Catch Me',

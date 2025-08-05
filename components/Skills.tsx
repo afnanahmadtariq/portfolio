@@ -60,7 +60,7 @@ export default function Skills() {
         { name: 'Next.js', icon: SiNextdotjs, level: 'Advanced' },
         { name: 'React.js', icon: SiReact, level: 'Advanced' },
         { name: 'Tailwind CSS', icon: SiTailwindcss, level: 'Advanced' },
-        { name: 'ShadCN', icon: SiShadcnui, level: 'Advanced' },
+        { name: 'ShadCN', icon: SiShadcnui, level: 'Intermediate' },
       ]
     },
     {
@@ -87,7 +87,7 @@ export default function Skills() {
         { name: 'AWS', icon: FaAws, level: 'Intermediate' },
         { name: 'MS Azure', icon: SiMicrosoftazure, level: 'Intermediate' },
         { name: 'Vercel', icon: SiVercel, level: 'Advanced' },
-        { name: 'Netlify', icon: SiNetlify, level: 'Advanced' },
+        { name: 'Netlify', icon: SiNetlify, level: 'Intermediate' },
       ]
     },
     {
@@ -96,7 +96,7 @@ export default function Skills() {
         { name: 'MongoDB', icon: SiMongodb, level: 'Advanced' },
         { name: 'PostgreSQL', icon: SiPostgresql, level: 'Intermediate' },
         { name: 'MySQL', icon: SiMysql, level: 'Intermediate' },
-        { name: 'Firebase', icon: SiFirebase, level: 'Intermediate' },
+        { name: 'Firebase', icon: SiFirebase, level: 'Beginner' },
       ]
     },
     {
@@ -115,15 +115,15 @@ export default function Skills() {
         { name: 'GitHub', icon: SiGithub, level: 'Advanced' },
         { name: 'Figma', icon: SiFigma, level: 'Advanced' },
         { name: 'IntelliJ IDEA', icon: SiIntellijidea, level: 'Intermediate' },
+        { name: 'Android Studio', icon: SiAndroidstudio, level: 'Intermediate' },
       ]
     },
     {
       category: 'Mobile App Development',
       skills: [
-        { name: 'React Native', icon: SiReact, level: 'Intermediate' },
-        { name: 'Flutter', icon: SiFlutter, level: 'Beginner' },
+        { name: 'React Native', icon: SiReact, level: 'Beginner' },
+        { name: 'Flutter', icon: SiFlutter, level: 'Intermediate' },
         { name: 'Expo', icon: SiExpo, level: 'Beginner' },
-        { name: 'Android Studio', icon: SiAndroidstudio, level: 'Beginner' },
       ]
     }
   ];

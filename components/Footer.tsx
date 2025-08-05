@@ -129,7 +129,7 @@ const Footer: React.FC = () => {
       <div className="container mx-auto sm:px-24 relative z-10 flex flex-col sm:flex-row justify-between flex-grow py-24 sm:py-0">
         <div className="flex flex-col sm:pl-36 justify-center items-center w-full sm:w-auto mb-8 sm:mb-0 animate-fade-in-up">
           <section className="mb-8 text-center">
-            <h2 className="text-lg md:text-xl font-semibold mb-4 tracking-wide">Contact</h2>
+            <h2 className="text-lg md:text-2xl font-bold text-blue-800 mb-4 tracking-wide">Contact</h2>
             <p className="mb-2">Email:
               <a href="mailto:afnanahmadtariq@hotmail.com" className="text-blue-600 hover:underline ml-1">
                 afnanahmadtariq@hotmail.com

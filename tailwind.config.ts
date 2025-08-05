@@ -58,11 +58,16 @@ export default {
   		},
 		animation: {
 			'spin-reverse-slow': 'spin-reverse 30s linear infinite',
+			'bounce-x': 'bounce-x 1s infinite',
 		},
 		keyframes: {
 			'spin-reverse': {
 				'0%': { transform: 'rotate(0deg)' },
 				'100%': { transform: 'rotate(-360deg)' },
+			},
+			'bounce-x': {
+				'0%, 100%': { transform: 'translateX(0)' },
+				'50%': { transform: 'translateX(-25%)' },
 			},
 		},
   	}

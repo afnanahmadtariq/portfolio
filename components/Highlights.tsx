@@ -1,12 +1,12 @@
-import {useState } from "react";
+// import {useState } from "react";
 import Image from "next/image";
 
 export default function Highlights() {
-  const [showSecond, setShowSecond] = useState(false);
+  // const [showSecond, setShowSecond] = useState(false);
 
-  const handleRightArrow = () => {
-    setShowSecond(true);
-  };
+  // const handleRightArrow = () => {
+  //   setShowSecond(true);
+  // };
 
   const handleDownArrow = () => {
     const skillsSection = document.getElementById("skills");
@@ -18,7 +18,7 @@ export default function Highlights() {
   return (
     <section id="highlights" className="relative h-[calc(100vh-4rem)] bg-gradient-to-br from-white to-blue-100 w-full flex items-center justify-center px-4 py-20 pt-32 overflow-hidden">
       <div className="w-full relative h-full">
-        <div
+        {/* <div
           className="absolute top-0 left-0 w-full h-full transition-transform duration-700 ease-in-out"
           style={{
             transform: showSecond ? "translateX(-100%)" : "translateX(0)",
@@ -39,14 +39,14 @@ export default function Highlights() {
               </svg>
             </button>
           </div>
-        </div>
-        <div
+        </div> */}
+        {/* <div
           className="absolute top-0 left-0 w-full h-full transition-transform duration-700 ease-in-out"
           style={{
             transform: showSecond ? "translateX(0)" : "translateX(100%)",
             zIndex: showSecond ? 20 : 10,
           }}
-        >
+        > */}
           <div className="flex flex-col items-center justify-center gap-8 w-full relative h-full px-4 sm:px-0">
             <h2 className="text-xl sm:text-2xl font-bold text-blue-800 mb-1 sm:mb-2 ">Responsive Design Skills</h2>
             <p className="mb-4 text-sm sm:text-lg text-gray-700 text-center max-w-4xl">
@@ -81,7 +81,7 @@ export default function Highlights() {
                   <path d="M5 8l7 8 7-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </button>
-              <button
+              {/* <button
                 aria-label="Reset to first section"
                 onClick={() => setShowSecond(false)}
                 className="p-2 sm:p-4 bg-gradient-to-br from-white to-blue-100 border border-blue-400 opacity-60 hover:opacity-100 text-blue-400 rounded-full transition animate-bounce-x flex items-center justify-center absolute left-7 sm:left-8 top-1/2 -translate-y-1/2 z-20"
@@ -89,8 +89,8 @@ export default function Highlights() {
                 <svg width="24" height="24" className="w-6 h-6 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15 19l-7-7 7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </button>
-            </div>
+              </button> */}
+            {/* </div> */}
           </div>
         </div>
       </div>

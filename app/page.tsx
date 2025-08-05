@@ -1,11 +1,12 @@
 'use client'
 
 import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import HeroSection from '@/components/HeroSection'
+import Highlights from '@/components/Highlights'
 import Skills from '@/components/Skills'
 import TechShowcase from '@/components/TechShowcase'
 import Projects from '@/components/Projects'
+import Footer from '@/components/Footer'
 
 export default function Home() {
   return (
@@ -13,6 +14,9 @@ export default function Home() {
       <Navbar />
       <section className="snap-start scroll-mt-16">
         <HeroSection />
+      </section>
+      <section className="snap-start scroll-mt-16">
+        <Highlights />
       </section>
       <section className="snap-start scroll-mt-16">
         <Skills />

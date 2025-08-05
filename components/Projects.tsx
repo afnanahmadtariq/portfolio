@@ -106,8 +106,8 @@ export default function Projects() {
                     <Image
                       src={project.image}
                       alt={`${project.title} screenshot`}
-                      layout="fill"
-                      objectFit="contain"
+                      fill
+                      style={{ objectFit: "contain" }}
                       className="rounded-2xl shadow-lg border border-blue-200"
                     />
                   </span>

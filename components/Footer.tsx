@@ -1,9 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Toaster, toast } from 'react-hot-toast';
 import Link from 'next/link';
 const Footer: React.FC = () => {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
   const [isInProjectsSection, setIsInProjectsSection] = useState(false);
+  const [sending, setSending] = useState(false);
+  const popupFormRef = useRef<HTMLFormElement>(null);
+  const mainFormRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +36,62 @@ const Footer: React.FC = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Handler for popup form
+  const handlePopupSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSending(true);
+    if (!popupFormRef.current) return;
+    const formData = new FormData(popupFormRef.current);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        toast.success('Message sent successfully!');
+        popupFormRef.current.reset();
+      } else {
+        toast.error(data.error || 'Failed to send message.');
+      }
+    } catch {
+      toast.error('Failed to send message. Please try again.');
+    }
+    setSending(false);
+  };
+
+  // Handler for main form
+  const handleMainSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSending(true);
+    if (!mainFormRef.current) return;
+    const formData = new FormData(mainFormRef.current);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        toast.success('Message sent successfully!');
+        mainFormRef.current.reset();
+      } else {
+        toast.error(data.error || 'Failed to send message.');
+      }
+    } catch {
+      toast.error('Failed to send message. Please try again.');
+    }
+    setSending(false);
+  };
 
   return (
     <>
@@ -72,8 +132,7 @@ const Footer: React.FC = () => {
                 <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            
-            <form className="p-6 flex flex-col gap-4">
+            <form ref={popupFormRef} onSubmit={handlePopupSubmit} className="p-6 flex flex-col gap-4">
               <h3 className="text-xl font-semibold mb-2 text-blue-700">Get in Touch</h3>
               <div className="mb-2">
                 <label htmlFor="popup-name" className="block text-sm font-medium text-blue-700 mb-1">Name</label>
@@ -84,6 +143,7 @@ const Footer: React.FC = () => {
                   className="w-full px-4 py-2 rounded-full border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition"
                   placeholder="Your Name"
                   required
+                  disabled={sending}
                 />
               </div>
               <div className="mb-2">
@@ -95,6 +155,7 @@ const Footer: React.FC = () => {
                   className="w-full px-4 py-2 rounded-full border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition"
                   placeholder="Your Email"
                   required
+                  disabled={sending}
                 />
               </div>
               <div className="mb-2">
@@ -106,13 +167,15 @@ const Footer: React.FC = () => {
                   className="w-full px-4 py-2 rounded-2xl border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition resize-none"
                   placeholder="Your Message"
                   required
+                  disabled={sending}
                 />
               </div>
               <button
                 type="submit"
                 className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 px-4 rounded-full font-semibold shadow-md hover:scale-[1.03] hover:from-blue-600 hover:to-blue-800 transition"
+                disabled={sending}
               >
-                Send
+                {sending ? 'Sending...' : 'Send'}
               </button>
             </form>
           </div>
@@ -161,7 +224,7 @@ const Footer: React.FC = () => {
           </section>
         </div>
         <div className="hidden sm:flex flex-col items-center gap-8 animate-fade-in-up">
-          <form className="w-full max-w-md lg:w-[50rem] bg-white/60 backdrop-blur-lg border border-blue-200 rounded-2xl shadow-xl p-8 flex flex-col gap-4">
+          <form ref={mainFormRef} onSubmit={handleMainSubmit} className="w-full max-w-md lg:w-[50rem] bg-white/60 backdrop-blur-lg border border-blue-200 rounded-2xl shadow-xl p-8 flex flex-col gap-4">
             <h3 className="text-xl font-semibold mb-2 text-blue-700">Get in Touch</h3>
             <div className="mb-2">
               <label htmlFor="name" className="block text-sm font-medium text-blue-700 mb-1">Name</label>
@@ -172,6 +235,7 @@ const Footer: React.FC = () => {
                 className="w-full px-4 py-2 rounded-full border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition"
                 placeholder="Your Name"
                 required
+                disabled={sending}
               />
             </div>
             <div className="mb-2">
@@ -183,6 +247,7 @@ const Footer: React.FC = () => {
                 className="w-full px-4 py-2 rounded-full border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition"
                 placeholder="Your Email"
                 required
+                disabled={sending}
               />
             </div>
             <div className="mb-2">
@@ -194,18 +259,21 @@ const Footer: React.FC = () => {
                 className="w-full px-4 py-2 rounded-2xl border border-blue-200 bg-white/80 focus:outline-none focus:ring-2 focus:ring-blue-400 text-gray-900 placeholder:text-gray-400 shadow-sm transition resize-none"
                 placeholder="Your Message"
                 required
+                disabled={sending}
               />
             </div>
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 px-4 rounded-full font-semibold shadow-md hover:scale-[1.03] hover:from-blue-600 hover:to-blue-800 transition"
+              disabled={sending}
             >
-              Send
+              {sending ? 'Sending...' : 'Send'}
             </button>
           </form>
         </div>
       </div>
     </footer>
+      <Toaster position="top-center" />
     </>
   );
 };
